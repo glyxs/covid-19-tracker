@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   InputGroup,
   InputLeftElement,
   Input,
   useColorModeValue,
   Button,
+  ModalBody,
+  VStack,
+  Box
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -21,6 +24,10 @@ const SearchBar = ({ type, icon, placeholder, data }) => {
   const bg = useColorModeValue("white", "gray.800");
   const bg2 = useColorModeValue("gray.50", "gray.900");
   const bgHover = useColorModeValue(darken(bg, 10), lighten(bg, 10));
+
+  const [SearchTerm, setSearchTerm] = useState('');
+
+  const CountryData = data;
 
   return (
     <>
@@ -46,13 +53,19 @@ const SearchBar = ({ type, icon, placeholder, data }) => {
           {placeholder}
         </Input>
       </InputGroup>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={() => {
+        onClose();
+        setSearchTerm('');
+      }}>
         <ModalOverlay />
         <ModalContent rounded="xl" p={3} bg={bg2} mx={3}>
           <ModalHeader p={0}>
             <InputGroup>
               <InputLeftElement pointerEvents="none" children={icon} />
               <Input
+                onChange={
+                  e => { setSearchTerm(e.target.value); }
+                }
                 type={type}
                 placeholder={placeholder}
                 variant="filled"
@@ -67,6 +80,44 @@ const SearchBar = ({ type, icon, placeholder, data }) => {
               />
             </InputGroup>
           </ModalHeader>
+          {data !== null && <ModalBody
+            p={0} mt={6}
+            display={SearchTerm === '' ? "none" : "block"}
+          >
+            <VStack spacing={1}>
+              {SearchTerm !== "" && CountryData.filter((val) => {
+                if (val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase())) {
+                  return val;
+                }
+              }).map((val, key) => {
+                return (
+                  <Button
+                    key={key}
+                    w="100%"
+                    justifyContent="left"
+                    bg={bg}
+                    _hover={{
+                      bg: bgHover
+                    }}
+                    _focus={{
+                      bg: bg,
+                      boxShadow: 'outline'
+                    }}
+                  >
+                    {(val.properties.flag &&
+                      <Box mr={3}>
+                        <img
+                          src={val.properties.flag}
+                          alt={val.properties.ADMIN}
+                          height="20px" width="34px" />
+                      </Box>) || <Box h="20px" w="34px" bg={bg2} mr={3}>?</Box>
+                    }
+                    {val.properties.ADMIN}
+                  </Button>
+                );
+              })}
+            </VStack>
+          </ModalBody>}
         </ModalContent>
       </Modal>
     </>

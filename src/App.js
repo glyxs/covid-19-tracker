@@ -50,7 +50,7 @@ function App() {
 
   return (
     <Container maxW='6xl'>
-      <Header />
+      <Header data={CountryData} />
       <Flex>
         <Box flex={{ md: 0.75, base: 1 }}>
           <CaseSummary
