@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { lighten, darken } from "@chakra-ui/theme-tools";
 
-const SearchBar = ({ type, icon, placeholder, data }) => {
+const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const bg = useColorModeValue("white", "gray.800");
@@ -92,6 +92,8 @@ const SearchBar = ({ type, icon, placeholder, data }) => {
               }).map((val, key) => {
                 return (
                   <Button
+                    onClick={e => { SearchController(e); onClose(); setSearchTerm(''); }}
+                    value={val.properties.ISO_A3}
                     key={key}
                     w="100%"
                     justifyContent="left"

@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import NewDataByDate from '../helpers/NewDataByDate';
 import DaysBetween from '../helpers/DaysBetween';
 
-const GetCaseTimelineData = (period, Sort, ErrorHandler) => {
+const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
 
     const [caseTimeLineData, setCaseTimeLineData] = useState(null);
     const [timelineIsLoading, setTimelineIsLoading] = useState(true);
+
+    var scope = 'all';
 
     var d1 = new Date();
     if (period !== 0) {
@@ -15,15 +17,25 @@ const GetCaseTimelineData = (period, Sort, ErrorHandler) => {
         d1 = new Date("December 31, 2019");
     }
 
-    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/all?lastdays=' + DaysBetween(d1, new Date());
+    if (SearchISO3 !== '') {
+        scope = SearchISO3;
+    } else {
+        scope = 'all';
+    }
+
+    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + scope + '?lastdays=' + DaysBetween(d1, new Date());
 
     const { response, requestError } = MakeAPIrequest(APIstring);
 
     useEffect(() => {
         if (response) {
-            processAPIdata(response, Sort);
+            if (scope !== 'all') {
+                processAPIdata(response.timeline, Sort);
+            } else {
+                processAPIdata(response, Sort);
+            }
         }
-    }, [response, Sort]);
+    }, [response, Sort, scope]);
 
     useEffect(() => {
         if (requestError) {

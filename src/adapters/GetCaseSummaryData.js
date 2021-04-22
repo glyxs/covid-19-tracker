@@ -3,21 +3,32 @@ import { useState, useEffect } from 'react';
 import NewDataByDate from '../helpers/NewDataByDate';
 import RelativeDifference from '../helpers/RelativeDifference';
 
-const GetCaseSummaryData = (ErrorHandler) => {
+const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
 
     const [caseSummaryData, setCaseSummaryData] = useState(null);
     const [caseChartData, setCaseChartData] = useState(null);
     const [SummaryIsLoading, setSummaryIsLoading] = useState(true);
+    var scope = 'all';
 
-    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/all?lastdays=31';
+    if (SearchISO3 !== '') {
+        scope = SearchISO3;
+    } else {
+        scope = 'all';
+    }
+
+    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + scope + '?lastdays=31';
 
     const { response, requestError } = MakeAPIrequest(APIstring);
 
     useEffect(() => {
         if (response) {
-            processAPIdata(response);
+            if (scope !== 'all') {
+                processAPIdata(response.timeline);
+            } else {
+                processAPIdata(response);
+            }
         }
-    }, [response]);
+    }, [response, scope]);
 
     useEffect(() => {
         if (requestError) {

@@ -44,13 +44,21 @@ function App() {
     setData(e.target.value);
   };
 
-  const { caseSummaryData, caseChartData, SummaryIsLoading } = GetCaseSummaryData(ErrorHandler);
+  const [SearchISO3, setSearchISO3] = useState('');
+
+  const SearchController = (e) => {
+    if (e.target.value !== '' && e.target.value !== '-99') {
+      setSearchISO3(e.target.value);
+    }
+  };
+
+  const { caseSummaryData, caseChartData, SummaryIsLoading } = GetCaseSummaryData(SearchISO3, ErrorHandler);
   const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(ErrorHandler);
-  const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(Period, Sort, ErrorHandler);
+  const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(SearchISO3, Period, Sort, ErrorHandler);
 
   return (
     <Container maxW='6xl'>
-      <Header data={CountryData} />
+      <Header data={CountryData} SearchController={SearchController} />
       <Flex>
         <Box flex={{ md: 0.75, base: 1 }}>
           <CaseSummary
@@ -70,6 +78,15 @@ function App() {
             SortController={SortController}
           />
         </Box>
+        <Box
+          mb={6} ml={6}
+          flex={{ md: 0.25, base: 0 }}
+          display={{ md: 'block', base: 'none' }}
+          rounded='xl'
+          boxShadow='xl'
+          p={3}
+          bg="white"
+        ></Box>
       </Flex>
     </Container>
   );

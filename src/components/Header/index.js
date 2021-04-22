@@ -8,7 +8,7 @@ import SearchBar from './SearchBar';
 import React from 'react';
 import Logo from './Logo';
 
-const Header = ({ data }) => {
+const Header = ({ data, SearchController }) => {
 
     return (
         <>
@@ -18,6 +18,7 @@ const Header = ({ data }) => {
                 </Box>
                 <Box flex={1} w={{ base: '75vw', md: '20vw' }} justifySelf="center">
                     <SearchBar
+                        SearchController={SearchController}
                         data={data}
                         type="text"
                         placeholder="Search by country"
