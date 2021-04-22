@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Select, ButtonGroup, Button, Flex } from '@chakra-ui/react';
+import { Heading, Select, ButtonGroup, Button, Flex, Spacer } from '@chakra-ui/react';
 
 const TimelineControls = ({ PeriodSelector, CaseTypeSelector, SortController }) => {
 
@@ -14,20 +14,23 @@ const TimelineControls = ({ PeriodSelector, CaseTypeSelector, SortController }) 
                 size='md'
                 mb={{ sm: 3, md: 0 }}
                 flex={{ sm: 0.5, md: 0.4 }}>
-                COVID-19 Timeline
+                Timeline
                 </Heading>
+            <Spacer />
             <Flex
                 flex={1}
                 flexDirection={{ xs: 'column-reverse', sm: 'row' }}
                 alignItems="flex-end">
-                <ButtonGroup isAttached size='sm' >
+                <ButtonGroup isAttached size='sm' w="100%">
                     <Button
+                        w="50%"
                         value={7}
                         mx="-px"
                         onClick={SortController}>
                         Weekly
                         </Button>
                     <Button
+                        w="50%"
                         value={1}
                         onClick={SortController}>
                         Daily

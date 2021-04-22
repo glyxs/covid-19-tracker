@@ -3,7 +3,7 @@ import Header from './components/Header';
 import WorldMap from './components/WorldMap';
 import CaseSummary from './components/CaseSummary';
 import CaseTimeline from './components/CaseTimeline';
-import { Container, Flex, Box } from '@chakra-ui/react';
+import { Container, Flex, Box, Breadcrumb } from '@chakra-ui/react';
 
 //hooks
 import GetCaseSummaryData from './adapters/GetCaseSummaryData';
@@ -59,6 +59,7 @@ function App() {
   return (
     <Container maxW='6xl'>
       <Header data={CountryData} SearchController={SearchController} />
+      <Breadcrumb />
       <Flex>
         <Box flex={{ md: 0.75, base: 1 }}>
           <CaseSummary

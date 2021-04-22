@@ -5,12 +5,12 @@ const DataStats = ({ label, number, type, isLoading, inverted, helper }) => {
     return (
         <Stat>
             <Skeleton isLoaded={!isLoading}>
-                <StatLabel>
+                <StatLabel fontSize={{ base: "xl", lg: "md" }}>
                     {label}
                 </StatLabel>
             </Skeleton>
             <Skeleton isLoaded={!isLoading} my={isLoading ? 1 : 0}>
-                <StatNumber>
+                <StatNumber fontSize={{ base: "3xl", lg: '2xl' }}>
                     {(number && number) || '1234567'}
                 </StatNumber>
             </Skeleton>

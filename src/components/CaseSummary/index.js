@@ -9,7 +9,7 @@ const CaseSummary = ({ data, chartData, isPending }) => {
 
     return (
         <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={3}>
-            <Box rounded='xl' boxShadow='xl' p={3} bg={bg} >
+            <Box rounded='xl' boxShadow='xl' p={3} bg={bg} display="flex" flexDir="column">
                 <DataStats
                     label="Total Confirmed"
                     number={data && data[29].cases.toLocaleString()}
@@ -20,7 +20,7 @@ const CaseSummary = ({ data, chartData, isPending }) => {
                 />
                 <DataChart isLoading={isPending} data={chartData && chartData.newCases} />
             </Box>
-            <Box rounded='xl' boxShadow='xl' p={3} bg={bg}>
+            <Box rounded='xl' boxShadow='xl' p={3} bg={bg} display="flex" flexDir="column">
                 <DataStats
                     label="Active Cases"
                     number={data && data[29].active.toLocaleString()}
@@ -30,7 +30,7 @@ const CaseSummary = ({ data, chartData, isPending }) => {
                 />
                 <DataChart isLoading={isPending} data={chartData && chartData.newActive} />
             </Box>
-            <Box rounded='xl' boxShadow='xl' p={3} bg={bg}>
+            <Box rounded='xl' boxShadow='xl' p={3} bg={bg} display="flex" flexDir="column">
                 <DataStats
                     label="Total Recovered"
                     inverted={true}
@@ -41,7 +41,7 @@ const CaseSummary = ({ data, chartData, isPending }) => {
                 />
                 <DataChart isLoading={isPending} data={chartData && chartData.newRecovered} />
             </Box>
-            <Box rounded='xl' boxShadow='xl' p={3} bg={bg}>
+            <Box rounded='xl' boxShadow='xl' p={3} bg={bg} display="flex" flexDir="column">
                 <DataStats
                     label="Total Deaths"
                     number={data && data[29].deaths.toLocaleString()}
