@@ -1,4 +1,4 @@
-import MakeAPIrequest from './MakeAPIrequest';
+import useAPIrequest from './useAPIrequest';
 import { useState, useEffect } from 'react';
 import NewDataByDate from '../helpers/NewDataByDate';
 import DaysBetween from '../helpers/DaysBetween';
@@ -8,8 +8,6 @@ const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
     const [caseTimeLineData, setCaseTimeLineData] = useState(null);
     const [timelineIsLoading, setTimelineIsLoading] = useState(true);
 
-    var scope = 'all';
-
     var d1 = new Date();
     if (period !== 0) {
         d1.setMonth(d1.getMonth() - period);
@@ -17,25 +15,30 @@ const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
         d1 = new Date("December 31, 2019");
     }
 
-    if (SearchISO3 !== '') {
-        scope = SearchISO3;
-    } else {
-        scope = 'all';
-    }
+    const [Scope, setScope] = useState('all');
 
-    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + scope + '?lastdays=' + DaysBetween(d1, new Date());
+    useEffect(() => {
+        if (SearchISO3 !== '') {
+            setScope(SearchISO3);
+            console.log("scope changed");
+        } else {
+            setScope('all');
+        }
+    }, [SearchISO3]);
 
-    const { response, requestError } = MakeAPIrequest(APIstring);
+    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + Scope + '?lastdays=' + DaysBetween(d1, new Date());
+
+    const { response, requestError } = useAPIrequest(APIstring);
 
     useEffect(() => {
         if (response) {
-            if (scope !== 'all') {
+            if (response.timeline) {
                 processAPIdata(response.timeline, Sort);
             } else {
                 processAPIdata(response, Sort);
             }
         }
-    }, [response, Sort, scope]);
+    }, [response, Sort]);
 
     useEffect(() => {
         if (requestError) {

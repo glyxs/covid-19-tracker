@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
-const MakeAPIrequest = (APIstr) => {
+const useAPIrequest = (APIstr) => {
 
     const [response, setResponse] = useState(null);
     const [requestError, setRequestError] = useState(null);
@@ -32,8 +32,7 @@ const MakeAPIrequest = (APIstr) => {
                 setRequestError(e);
             });
     };
-
     return { response, requestError };
 };
 
-export default MakeAPIrequest;
+export default useAPIrequest;

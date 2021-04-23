@@ -3,7 +3,7 @@ import Header from './components/Header';
 import WorldMap from './components/WorldMap';
 import CaseSummary from './components/CaseSummary';
 import CaseTimeline from './components/CaseTimeline';
-import { Container, Flex, Box, Breadcrumb } from '@chakra-ui/react';
+import { Container, Flex, Box } from '@chakra-ui/react';
 
 //hooks
 import GetCaseSummaryData from './adapters/GetCaseSummaryData';
@@ -11,6 +11,7 @@ import GetCountriesCasesData from './adapters/GetCountriesCasesData';
 import GetCaseTimelineData from './adapters/GetCaseTimelineData';
 import { useState } from 'react';
 import { useToast } from "@chakra-ui/react";
+import Breadcrumbs from './components/Breadcrumbs';
 
 function App() {
   const toast = useToast();
@@ -26,6 +27,7 @@ function App() {
         duration: 10000,
         isClosable: true,
       });
+      console.log(error);
     }
   };
 
@@ -44,13 +46,15 @@ function App() {
     setData(e.target.value);
   };
 
-  const [SearchISO3, setSearchISO3] = useState('');
-
-  const SearchController = (e) => {
-    if (e.target.value !== '' && e.target.value !== '-99') {
+  const SearchController = (e, country) => {
+    if (e.target.value !== '-99') {
       setSearchISO3(e.target.value);
+      setCountryName(country);
     }
   };
+
+  const [SearchISO3, setSearchISO3] = useState('');
+  const [CountryName, setCountryName] = useState('');
 
   const { caseSummaryData, caseChartData, SummaryIsLoading } = GetCaseSummaryData(SearchISO3, ErrorHandler);
   const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(ErrorHandler);
@@ -59,7 +63,7 @@ function App() {
   return (
     <Container maxW='6xl'>
       <Header data={CountryData} SearchController={SearchController} />
-      <Breadcrumb />
+      <Breadcrumbs country={CountryName} SearchController={SearchController} />
       <Flex>
         <Box flex={{ md: 0.75, base: 1 }}>
           <CaseSummary

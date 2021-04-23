@@ -1,4 +1,4 @@
-import MakeAPIrequest from './MakeAPIrequest';
+import useAPIrequest from './useAPIrequest';
 import { useState, useEffect } from 'react';
 import NewDataByDate from '../helpers/NewDataByDate';
 import RelativeDifference from '../helpers/RelativeDifference';
@@ -8,27 +8,29 @@ const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
     const [caseSummaryData, setCaseSummaryData] = useState(null);
     const [caseChartData, setCaseChartData] = useState(null);
     const [SummaryIsLoading, setSummaryIsLoading] = useState(true);
-    var scope = 'all';
-
-    if (SearchISO3 !== '') {
-        scope = SearchISO3;
-    } else {
-        scope = 'all';
-    }
-
-    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + scope + '?lastdays=31';
-
-    const { response, requestError } = MakeAPIrequest(APIstring);
+    const [Scope, setScope] = useState('all');
 
     useEffect(() => {
-        if (response) {
-            if (scope !== 'all') {
+        if (SearchISO3 !== '') {
+            setScope(SearchISO3);
+        } else {
+            setScope('all');
+        }
+    }, [SearchISO3]);
+
+    const APIstring = 'https://corona.lmao.ninja/v3/covid-19/historical/' + Scope + '?lastdays=31';
+
+    const { response, requestError } = useAPIrequest(APIstring);
+
+    useEffect(() => {
+        if (response && response !== null) {
+            if (response.timeline) {
                 processAPIdata(response.timeline);
             } else {
                 processAPIdata(response);
             }
         }
-    }, [response, scope]);
+    }, [response]);
 
     useEffect(() => {
         if (requestError) {

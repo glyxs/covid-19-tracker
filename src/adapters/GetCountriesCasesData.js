@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import MakeAPIrequest from './MakeAPIrequest';
+import useAPIrequest from './useAPIrequest';
 import world from '../data/world.json';
 
 const GetCountriesCasesData = (ErrorHandler) => {
@@ -9,7 +9,7 @@ const GetCountriesCasesData = (ErrorHandler) => {
 
     const APIstring = 'https://corona.lmao.ninja/v3/covid-19/countries';
 
-    const { response, requestError } = MakeAPIrequest(APIstring);
+    const { response, requestError } = useAPIrequest(APIstring);
 
     useEffect(() => {
         if (response) {

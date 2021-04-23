@@ -1,11 +1,14 @@
-import { Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Skeleton } from '@chakra-ui/react';
+import { Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 
 const DataStats = ({ label, number, type, isLoading, inverted, helper }) => {
+
+    const color = useColorModeValue("gray.600", "gray.400");
+
     return (
         <Stat>
             <Skeleton isLoaded={!isLoading}>
-                <StatLabel fontSize={{ base: "xl", lg: "md" }}>
+                <StatLabel fontSize={{ base: "xl", lg: "md" }} color={color}>
                     {label}
                 </StatLabel>
             </Skeleton>

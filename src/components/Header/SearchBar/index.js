@@ -92,7 +92,13 @@ const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
               }).map((val, key) => {
                 return (
                   <Button
-                    onClick={e => { SearchController(e); onClose(); setSearchTerm(''); }}
+                    onClick={e => {
+                      if (val.properties.flag) {
+                        SearchController(e, val.properties.ADMIN);
+                        onClose();
+                        setSearchTerm('');
+                      }
+                    }}
                     value={val.properties.ISO_A3}
                     key={key}
                     w="100%"
