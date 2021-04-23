@@ -6,17 +6,18 @@ const NewDataByDate = (data) => {
         for (const [date, val] of Object.entries(obj)) {
             if (!newDataByDate[date]) {
                 newDataByDate[date] = { date };
+                labels.push(new Date(date).toDateString().substr(4));
             };
             newDataByDate[date][key] = val;
             if (!newDataByDate[date].active) {
                 newDataByDate[date].active = newDataByDate[date][key];
-                labels.push(new Date(date).toDateString().substr(4));
             }
             if (key !== 'cases') {
                 newDataByDate[date].active = newDataByDate[date].active - newDataByDate[date][key];
             }
         }
     }
+
     labels.shift();
     const ans = Object.values(newDataByDate);
     return { ans, labels };
