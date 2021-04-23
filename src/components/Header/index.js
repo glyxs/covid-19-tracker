@@ -30,7 +30,7 @@ const Header = ({ data, SearchController }) => {
                 </Box>
                 <Box ml="4" display={{ base: 'none', lg: 'block' }}>
                     <IconLinkButton
-                        href={"https://github.com/glyxs/covid-tracker"}
+                        href={"https://github.com/glyxs/covid-19-tracker"}
                         icon={<AiFillGithub fontSize="24px" />} />
                 </Box>
                 <Box ml="4" display={{ base: 'none', lg: 'block' }}>
