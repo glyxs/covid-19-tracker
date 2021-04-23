@@ -9,6 +9,7 @@ const IconLinkButton = ({ href, text, icon }) => {
 
     return (
         <Button as={Link}
+            className="ButtonLink"
             boxShadow="md"
             href={href}
             isExternal={true}

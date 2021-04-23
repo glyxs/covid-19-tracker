@@ -12,6 +12,7 @@ import GetCaseTimelineData from './adapters/GetCaseTimelineData';
 import { useState } from 'react';
 import { useToast } from "@chakra-ui/react";
 import Breadcrumbs from './components/Breadcrumbs';
+import Footer from './components/Footer';
 
 function App() {
   const toast = useToast();
@@ -93,6 +94,7 @@ function App() {
           bg="white"
         ></Box>
       </Flex>
+      <Footer />
     </Container>
   );
 }

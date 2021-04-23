@@ -7,7 +7,7 @@ const styles = {
             backgroundColor: mode("gray.50", "gray.900")(props),
             color: mode("gray.800", "gray.100")(props)
         },
-        "a": {
+        ".ButtonLink": {
             textDecoration: "none !important"
         },
         ".leaflet-touch .leaflet-bar": {

@@ -20,7 +20,6 @@ const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
     useEffect(() => {
         if (SearchISO3 !== '') {
             setScope(SearchISO3);
-            console.log("scope changed");
         } else {
             setScope('all');
         }

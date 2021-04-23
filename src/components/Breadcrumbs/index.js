@@ -13,14 +13,7 @@ const Breadcrumbs = ({ country, SearchController }) => {
             <Button
                 p={0}
                 size="xs"
-                _focus={{
-                    bg: "transparent",
-                    outline: "none"
-                }}
-                _hover={{
-                    bg: "transparent",
-                    outline: "none"
-                }}
+                variant="link"
                 bg="transparent"
                 fontWeight={600}
                 fontSize="xl"

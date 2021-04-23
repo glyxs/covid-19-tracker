@@ -39,7 +39,7 @@ const TimelineControls = ({ PeriodSelector, CaseTypeSelector, SortController }) 
                 <Select
                     size='sm'
                     rounded='md'
-                    minW={105}
+                    minW={110}
                     onChange={CaseTypeSelector}
                     my={{ xs: 3, sm: 0 }}
                     mx={{ xs: 0, sm: 1 }}>
@@ -51,7 +51,7 @@ const TimelineControls = ({ PeriodSelector, CaseTypeSelector, SortController }) 
                 <Select
                     size='sm'
                     rounded='md'
-                    minW={105}
+                    minW={110}
                     onChange={PeriodSelector}
                     defaultValue={3}>
                     <option value={1}>1 month</option>
