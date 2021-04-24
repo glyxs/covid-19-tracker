@@ -57,7 +57,7 @@ function App() {
   const [SearchISO3, setSearchISO3] = useState('');
   const [CountryName, setCountryName] = useState('');
 
-  const { caseSummaryData, caseChartData, SummaryIsLoading } = GetCaseSummaryData(SearchISO3, ErrorHandler);
+  const { caseSummaryData, caseChartData, caseDataRates, SummaryIsLoading } = GetCaseSummaryData(SearchISO3, ErrorHandler);
   const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(ErrorHandler);
   const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(SearchISO3, Period, Sort, ErrorHandler);
 

@@ -11,7 +11,7 @@ const Breadcrumbs = ({ country, SearchController }) => {
 
     return (
         <HStack spacing={2} alignItems="baseline" mb={6}>
-            <Tooltip label={country !== '' ? "Show global summary" : "Showing global summary"} >
+            <Tooltip rounded="lg" label={country !== '' ? "Show global summary" : "Showing global summary"} >
                 <Button
                     p={0}
                     size="xs"
