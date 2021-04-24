@@ -35,8 +35,8 @@ const SmallScreenMenu = () => {
             />
             <MenuList zIndex={999} boxShadow="2xl">
                 <MenuItem isFocusable={false} display={{ base: 'block', md: 'none' }}><Logo /></MenuItem>
-                <MenuItem>About the Author</MenuItem>
-                <MenuItem>GitHub Repository</MenuItem>
+                <MenuItem>About the author</MenuItem>
+                <MenuItem>GitHub repository</MenuItem>
                 <MenuItem closeOnSelect={false} display={{ base: 'block', sm: 'none' }}><ColorModeToggle /></MenuItem>
             </MenuList>
         </Menu>
