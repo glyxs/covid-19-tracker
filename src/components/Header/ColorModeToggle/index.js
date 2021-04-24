@@ -16,6 +16,7 @@ const ColorModeToggle = () => {
                 Dark Mode
             </FormLabel>
             <Switch
+                colorScheme="red"
                 onChange={toggleColorMode}
                 id="ColorModeToggle"
                 isChecked={colorMode === "dark" ? true : false}
