@@ -77,6 +77,9 @@ function App() {
             isLoading={CountryDataIsLoading}
             data={CountryData}
           />
+          <Box display={{ md: 'none', base: 'block' }}>
+            <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+          </Box>
           <CaseTimeline
             isLoading={timelineIsLoading}
             data={caseTimeLineData && caseTimeLineData[Data]}
@@ -86,7 +89,7 @@ function App() {
           />
         </Box>
         <Box
-          mb={6} ml={6}
+          ml={6}
           flex={{ md: 0.25, base: 0 }}
           display={{ md: 'block', base: 'none' }}
         >
