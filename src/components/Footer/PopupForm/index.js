@@ -33,7 +33,7 @@ const PopupForm = ({ isOpen, onClose }) => {
                         />
                         <Input variant="filled" type="email" placeholder="Your Email" />
                     </InputGroup>
-                    <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only. Check out our <Link href="#">Privacy Policy</Link> for more information.</Text>
+                    <Text fontSize="sm" color="GrayText">Your Email is not being shared to a thir party and it is used for contact purposes only.</Text>
                 </ModalBody>
                 <ModalFooter>
                     <Button variant="ghost" mr={3} onClick={onClose}>Cancel</Button>
