@@ -65,6 +65,10 @@ const styles = {
         '.leaflet-popup-content-wrapper, .leaflet-popup-tip': {
             background: "rgba(0, 0, 0, 0.8)",
             color: "white",
+        },
+        '.js-focus-visible :focus:not([data-focus-visible-added])': {
+            outline: "none",
+            boxShadow: "none"
         }
     }),
 };
