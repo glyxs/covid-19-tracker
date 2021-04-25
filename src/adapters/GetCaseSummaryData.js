@@ -106,10 +106,10 @@ const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
             }
 
             if (nKeys[k] === 'newRecovered') {
-                chartData[nKeys[k]].datasets[0].borderColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? "#4ED964" : '#FF3A31';
+                chartData[nKeys[k]].datasets[0].borderColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? "#2DD249" : '#FF0E00';
                 chartData[nKeys[k]].datasets[0].backgroundColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? "rgba(78, 217, 100, 0.3)" : 'rgba(255, 58, 49, 0.3)';
             } else {
-                chartData[nKeys[k]].datasets[0].borderColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? '#FF3A31' : "#4ED964";
+                chartData[nKeys[k]].datasets[0].borderColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? '#FF0E00' : "#2DD249";
                 chartData[nKeys[k]].datasets[0].backgroundColor = ans[ans.length - 1].helpers[nKeys[k]].type === 'increase' ? 'rgba(255, 58, 49, 0.3)' : "rgba(78, 217, 100, 0.3)";
             }
         }

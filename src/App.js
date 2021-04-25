@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useToast } from "@chakra-ui/react";
 import Breadcrumbs from './components/Breadcrumbs';
 import Footer from './components/Footer';
+import CaseDataRates from './components/CaseDataRates';
 
 function App() {
   const toast = useToast();
@@ -88,11 +89,9 @@ function App() {
           mb={6} ml={6}
           flex={{ md: 0.25, base: 0 }}
           display={{ md: 'block', base: 'none' }}
-          rounded='xl'
-          boxShadow='xl'
-          p={3}
-          bg="white"
-        ></Box>
+        >
+          <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+        </Box>
       </Flex>
       <Footer />
     </Container>
