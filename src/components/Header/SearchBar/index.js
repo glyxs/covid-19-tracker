@@ -86,9 +86,7 @@ const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
           >
             <VStack spacing={1}>
               {SearchTerm !== "" && CountryData.filter((val) => {
-                if (val.properties.flag && val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase())) {
-                  return val;
-                }
+                return val.properties.flag && val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase());
               }).map((val, key) => {
                 return (
                   <Button

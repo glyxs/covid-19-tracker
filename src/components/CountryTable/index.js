@@ -42,9 +42,7 @@ const CountryTable = ({ data, isLoading }) => {
                 <Skeleton isLoaded={!isLoading}>
                     <Box w="100%" minW="230px" h={{ base: "300px", lg: "700px" }} overflowY="scroll" overflowX="hidden">
                         {CountryData && CountryData.filter((val) => {
-                            if (val.properties.flag && val.properties.flag !== '') {
-                                return val;
-                            }
+                            return val.properties.flag !== '';
                         }).sort((a, b) => { return a.properties.confirmed - b.properties.confirmed; }).map((val, key) => {
                             return (
                                 <div key={key}>
