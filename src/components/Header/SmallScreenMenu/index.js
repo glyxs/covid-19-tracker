@@ -11,6 +11,8 @@ import {
     IconButton,
     useColorMode,
     useColorModeValue,
+    Box,
+    Link,
 } from "@chakra-ui/react";
 
 const SmallScreenMenu = () => {
@@ -34,9 +36,9 @@ const SmallScreenMenu = () => {
                 }}
             />
             <MenuList zIndex={999} boxShadow="2xl">
-                <MenuItem isFocusable={false} display={{ base: 'block', md: 'none' }}><Logo /></MenuItem>
-                <MenuItem>About the author</MenuItem>
-                <MenuItem>GitHub repository</MenuItem>
+                <Box p={3} display={{ base: 'block', md: 'none' }} ><Logo /></Box>
+                <MenuItem as={Link} href='https://stepanpavlov.com' isExternal={true}>About the author</MenuItem>
+                <MenuItem as={Link} href="https://github.com/glyxs/covid-19-tracker" isExternal={true}>GitHub repository</MenuItem>
                 <MenuItem closeOnSelect={false} display={{ base: 'block', sm: 'none' }}><ColorModeToggle /></MenuItem>
             </MenuList>
         </Menu>
