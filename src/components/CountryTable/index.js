@@ -1,7 +1,7 @@
-import { Box, Flex, Spacer, useColorModeValue, Heading } from '@chakra-ui/react';
+import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-const CountryTable = ({ data }) => {
+const CountryTable = ({ data, isLoading }) => {
 
     const [CountryData, setCountryData] = useState(null);
 
@@ -39,29 +39,31 @@ const CountryTable = ({ data }) => {
                     <Heading size="sm" fontWeight={500}>Confirmed</Heading>
                 </Flex>
                 <hr />
-                <Box w="100%" minW="230px" h={{ base: "300px", lg: "700px" }} overflowY="scroll" overflowX="hidden">
-                    {CountryData && CountryData.filter((val) => {
-                        if (val.properties.flag && val.properties.flag !== '') {
-                            return val;
-                        }
-                    }).sort((a, b) => { return a.properties.confirmed - b.properties.confirmed; }).map((val, key) => {
-                        return (
-                            <div key={key}>
-                                <Flex flexDirection="row" alignItems="center" my={1} flexWrap="nowrap">
-                                    <img
-                                        style={{ borderRadius: "3px" }}
-                                        src={val.properties.flag}
-                                        alt={val.properties.ADMIN}
-                                        height="20px" width="34px" />
-                                    <Heading mx={3} size="xs" fontWeight={500}>{val.properties.ADMIN}</Heading>
-                                    <Spacer />
-                                    <Heading size="xs" mx={1}>{val.properties.confirmed}</Heading>
-                                </Flex>
-                                <hr />
-                            </div>
-                        );
-                    })}
-                </Box>
+                <Skeleton isLoaded={!isLoading}>
+                    <Box w="100%" minW="230px" h={{ base: "300px", lg: "700px" }} overflowY="scroll" overflowX="hidden">
+                        {CountryData && CountryData.filter((val) => {
+                            if (val.properties.flag && val.properties.flag !== '') {
+                                return val;
+                            }
+                        }).sort((a, b) => { return a.properties.confirmed - b.properties.confirmed; }).map((val, key) => {
+                            return (
+                                <div key={key}>
+                                    <Flex flexDirection="row" alignItems="center" my={1} flexWrap="nowrap">
+                                        <img
+                                            style={{ borderRadius: "3px" }}
+                                            src={val.properties.flag}
+                                            alt={val.properties.ADMIN}
+                                            height="20px" width="34px" />
+                                        <Heading mx={3} size="xs" fontWeight={500}>{val.properties.ADMIN}</Heading>
+                                        <Spacer />
+                                        <Heading size="xs" mx={1}>{val.properties.confirmed}</Heading>
+                                    </Flex>
+                                    <hr />
+                                </div>
+                            );
+                        })}
+                    </Box>
+                </Skeleton>
             </Box >
         </Box>
     );
