@@ -82,7 +82,7 @@ function App() {
             data={CountryData}
           />
           <Box mt={6} display={{ base: 'block', lg: 'none' }}>
-            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} />
+            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} SearchISO3={SearchISO3} />
           </Box>
           <CaseTimeline
             isLoading={timelineIsLoading}
@@ -95,7 +95,7 @@ function App() {
         <Box flex={1} display={{ base: 'none', lg: 'block' }}>
           <Flex direction="column" h="100%" ml={6}>
             <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
-            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} />
+            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} SearchISO3={SearchISO3} />
           </Flex>
         </Box>
       </Flex>

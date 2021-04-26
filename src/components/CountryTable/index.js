@@ -1,7 +1,7 @@
 import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton, Select } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-const CountryTable = ({ data, isLoading, SearchController }) => {
+const CountryTable = ({ data, isLoading, SearchController, SearchISO3 }) => {
 
     const [CountryData, setCountryData] = useState(null);
 
@@ -15,10 +15,8 @@ const CountryTable = ({ data, isLoading, SearchController }) => {
     const bg2 = useColorModeValue("gray.50", "gray.700");
 
     const [Data, setData] = useState('confirmed');
-    const [Label, setLabel] = useState('Confirmed');
     const CaseTypeSelector = (e) => {
         setData(e.target.value);
-        setLabel(e.target.selectedOptions[0].text);
     };
 
     return (
@@ -57,14 +55,6 @@ const CountryTable = ({ data, isLoading, SearchController }) => {
             <Box
                 display="flex"
                 flexDirection="column">
-                <Flex
-                    flexDirection="row"
-                    my={1}
-                    color="GrayText">
-                    <Heading size="sm" fontWeight={500}>Country</Heading>
-                    <Spacer />
-                    <Heading size="sm" fontWeight={500}>{Label}</Heading>
-                </Flex>
                 <hr />
                 <Skeleton isLoaded={!isLoading}>
                     <Box w="100%" minW="230px" h={{ base: "300px", lg: "680px" }} overflowY="scroll" overflowX="hidden">
@@ -76,6 +66,7 @@ const CountryTable = ({ data, isLoading, SearchController }) => {
                             return (
                                 <div key={key}>
                                     <Flex
+                                        bg={SearchISO3 === val.properties.ISO_A3 ? bg2 : bg}
                                         title={'Click to view ' + val.properties.ADMIN + ' summary'}
                                         onClick={e => {
                                             e.target.value = val.properties.ISO_A3;
@@ -84,7 +75,7 @@ const CountryTable = ({ data, isLoading, SearchController }) => {
                                         cursor="pointer"
                                         flexDirection="row"
                                         alignItems="center"
-                                        py={2}
+                                        p={2}
                                         _hover={{
                                             bg: bg2
                                         }}
