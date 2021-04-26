@@ -69,6 +69,14 @@ const styles = {
         '.js-focus-visible :focus:not([data-focus-visible-added])': {
             outline: "none",
             boxShadow: "none"
+        },
+        "button, textarea, input, select, a": {
+            WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+            WebkitUserSelect: 'transparent',
+            KhtmlUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: "none",
+            userSelect: "none"
         }
     }),
 };
