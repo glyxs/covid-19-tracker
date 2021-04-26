@@ -41,9 +41,11 @@ const CountryTable = ({ data, isLoading }) => {
                 <hr />
                 <Skeleton isLoaded={!isLoading}>
                     <Box w="100%" minW="230px" h={{ base: "300px", lg: "700px" }} overflowY="scroll" overflowX="hidden">
-                        {CountryData && CountryData.filter((val) => {
+                        {CountryData !== null && CountryData.filter((val) => {
                             return val.properties.flag !== '';
-                        }).sort((a, b) => { return a.properties.confirmed - b.properties.confirmed; }).map((val, key) => {
+                        }).sort((a, b) => {
+                            return parseFloat(b.properties.confirmed.replace(/[^0-9-.]/g, '')) - parseFloat(a.properties.confirmed.replace(/[^0-9-.]/g, ''));
+                        }).map((val, key) => {
                             return (
                                 <div key={key}>
                                     <Flex flexDirection="row" alignItems="center" my={1} flexWrap="nowrap">
