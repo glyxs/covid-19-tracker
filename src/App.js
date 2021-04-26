@@ -3,7 +3,7 @@ import Header from './components/Header';
 import WorldMap from './components/WorldMap';
 import CaseSummary from './components/CaseSummary';
 import CaseTimeline from './components/CaseTimeline';
-import { Container, Flex, Box } from '@chakra-ui/react';
+import { Container, Box, Flex } from '@chakra-ui/react';
 
 //hooks
 import GetCaseSummaryData from './adapters/GetCaseSummaryData';
@@ -14,6 +14,7 @@ import { useToast } from "@chakra-ui/react";
 import Breadcrumbs from './components/Breadcrumbs';
 import Footer from './components/Footer';
 import CaseDataRates from './components/CaseDataRates';
+import CountryTable from './components/CountryTable';
 
 function App() {
   const toast = useToast();
@@ -63,22 +64,25 @@ function App() {
   const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(SearchISO3, Period, Sort, ErrorHandler);
 
   return (
-    <Container maxW='6xl'>
+    <Container maxW='7xl' maxH="min-content" pos="relative">
       <Header data={CountryData} SearchController={SearchController} />
       <Breadcrumbs country={CountryName} SearchController={SearchController} />
-      <Flex>
-        <Box flex={{ md: 0.75, base: 1 }}>
+      <Flex direction="row" maxH="min-content">
+        <Box flex={{ base: 1, md: 3 }}>
           <CaseSummary
             data={caseSummaryData}
             isPending={SummaryIsLoading}
             chartData={caseChartData}
           />
+          <Box mt={6} display={{ base: 'block', lg: 'none' }}>
+            <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+          </Box>
           <WorldMap
             isLoading={CountryDataIsLoading}
             data={CountryData}
           />
-          <Box display={{ md: 'none', base: 'block' }}>
-            <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+          <Box mt={6} display={{ base: 'block', lg: 'none' }}>
+            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} />
           </Box>
           <CaseTimeline
             isLoading={timelineIsLoading}
@@ -88,16 +92,15 @@ function App() {
             SortController={SortController}
           />
         </Box>
-        <Box
-          ml={6}
-          flex={{ md: 0.25, base: 0 }}
-          display={{ md: 'block', base: 'none' }}
-        >
-          <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+        <Box flex={1} display={{ base: 'none', lg: 'block' }}>
+          <Flex direction="column" h="100%" ml={6}>
+            <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
+            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} />
+          </Flex>
         </Box>
       </Flex>
       <Footer />
-    </Container>
+    </Container >
   );
 }
 

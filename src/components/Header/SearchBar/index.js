@@ -86,18 +86,16 @@ const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
           >
             <VStack spacing={1}>
               {SearchTerm !== "" && CountryData.filter((val) => {
-                if (val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase())) {
+                if (val.properties.flag && val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase())) {
                   return val;
                 }
               }).map((val, key) => {
                 return (
                   <Button
                     onClick={e => {
-                      if (val.properties.flag) {
-                        SearchController(e, val.properties.ADMIN);
-                        onClose();
-                        setSearchTerm('');
-                      }
+                      SearchController(e, val.properties.ADMIN);
+                      onClose();
+                      setSearchTerm('');
                     }}
                     value={val.properties.ISO_A3}
                     key={key}
@@ -112,14 +110,12 @@ const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
                       boxShadow: 'outline'
                     }}
                   >
-                    {(val.properties.flag &&
-                      <Box mr={3}>
-                        <img
-                          src={val.properties.flag}
-                          alt={val.properties.ADMIN}
-                          height="20px" width="34px" />
-                      </Box>) || <Box h="20px" w="34px" bg={bg2} mr={3}>?</Box>
-                    }
+                    <Box mr={3}>
+                      <img
+                        src={val.properties.flag}
+                        alt={val.properties.ADMIN}
+                        height="20px" width="34px" />
+                    </Box>
                     {val.properties.ADMIN}
                   </Button>
                 );

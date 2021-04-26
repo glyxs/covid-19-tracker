@@ -15,7 +15,7 @@ const RateStat = ({ label, value, icon, isLoaded, num, numColor }) => {
                 </Skeleton>
                 <Spacer />
                 <Skeleton isLoaded={isLoaded} my={!isLoaded ? 1 : 0}>
-                    <Heading fontWeight={600} fontSize={{ base: "3xl", lg: '2xl' }} color={numColor} lineHeight="base">
+                    <Heading fontWeight={600} fontSize={{ base: "3xl", lg: '4xl' }} color={numColor} lineHeight="base">
                         {(value && value) || '100%'}{num !== true && "%"}
                     </Heading>
                 </Skeleton>

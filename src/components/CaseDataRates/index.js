@@ -9,7 +9,7 @@ const CaseDataRates = ({ data, isLoading }) => {
     const bg = useColorModeValue("white", "gray.800");
 
     return (
-        <SimpleGrid columns={{ base: 1, sm: 3, md: 1 }} spacing={3}>
+        <SimpleGrid columns={{ base: 1, sm: 3, lg: 1 }} spacing={3} flex={1}>
             <Box rounded='xl' boxShadow='xl' p={3} bg={bg}>
                 <RateStat
                     icon={<GiHealthIncrease fontSize="50px" />}
