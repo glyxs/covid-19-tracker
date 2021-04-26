@@ -1,7 +1,7 @@
 import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton, Select } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-const CountryTable = ({ data, isLoading }) => {
+const CountryTable = ({ data, isLoading, SearchController }) => {
 
     const [CountryData, setCountryData] = useState(null);
 
@@ -12,10 +12,13 @@ const CountryTable = ({ data, isLoading }) => {
     }, [data]);
 
     const bg = useColorModeValue("white", "gray.800");
+    const bg2 = useColorModeValue("gray.50", "gray.700");
 
     const [Data, setData] = useState('confirmed');
+    const [Label, setLabel] = useState('Confirmed');
     const CaseTypeSelector = (e) => {
         setData(e.target.value);
+        setLabel(e.target.selectedOptions[0].text);
     };
 
     return (
@@ -60,11 +63,11 @@ const CountryTable = ({ data, isLoading }) => {
                     color="GrayText">
                     <Heading size="sm" fontWeight={500}>Country</Heading>
                     <Spacer />
-                    <Heading size="sm" fontWeight={500}>Confirmed</Heading>
+                    <Heading size="sm" fontWeight={500}>{Label}</Heading>
                 </Flex>
                 <hr />
                 <Skeleton isLoaded={!isLoading}>
-                    <Box w="100%" minW="230px" h={{ base: "300px", lg: "700px" }} overflowY="scroll" overflowX="hidden">
+                    <Box w="100%" minW="230px" h={{ base: "300px", lg: "680px" }} overflowY="scroll" overflowX="hidden">
                         {CountryData !== null && CountryData.filter((val) => {
                             return val.properties.flag !== '';
                         }).sort((a, b) => {
@@ -72,7 +75,21 @@ const CountryTable = ({ data, isLoading }) => {
                         }).map((val, key) => {
                             return (
                                 <div key={key}>
-                                    <Flex flexDirection="row" alignItems="center" my={2} flexWrap="nowrap">
+                                    <Flex
+                                        title={'Click to view ' + val.properties.ADMIN + ' summary'}
+                                        onClick={e => {
+                                            e.target.value = val.properties.ISO_A3;
+                                            SearchController(e, val.properties.ADMIN);
+                                        }}
+                                        cursor="pointer"
+                                        flexDirection="row"
+                                        alignItems="center"
+                                        py={2}
+                                        _hover={{
+                                            bg: bg2
+                                        }}
+                                    >
+                                        <Heading mr={1} size="xs" minW="28px" fontWeight={500}>{key + 1}.</Heading>
                                         <img
                                             style={{ borderRadius: "3px" }}
                                             src={val.properties.flag}

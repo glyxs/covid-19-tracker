@@ -95,7 +95,7 @@ function App() {
         <Box flex={1} display={{ base: 'none', lg: 'block' }}>
           <Flex direction="column" h="100%" ml={6}>
             <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
-            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} />
+            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} />
           </Flex>
         </Box>
       </Flex>
