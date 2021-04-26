@@ -43,7 +43,13 @@ const WorldMap = ({ isLoading, data }) => {
                     bg={colorMode === "light" ? darken(bg, 10) : lighten(bg, 10)}
                     pos='relative'>
                     {(show && <MapContainer
-                        zoom={1.5}
+                        zoom={2}
+                        maxBounds={[
+                            [-60, -180],
+                            [90, 180]
+                        ]}
+                        maxZoom={6}
+                        minZoom={2}
                         center={[30, 0]}
                         attributionControl={false}
                         style={{
