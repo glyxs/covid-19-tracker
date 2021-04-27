@@ -1,20 +1,20 @@
 //components
-import Header from './components/Header';
-import WorldMap from './components/WorldMap';
-import CaseSummary from './components/CaseSummary';
-import CaseTimeline from './components/CaseTimeline';
-import { Container, Box, Flex } from '@chakra-ui/react';
+import Header from "./components/Header";
+import WorldMap from "./components/WorldMap";
+import CaseSummary from "./components/CaseSummary";
+import CaseTimeline from "./components/CaseTimeline";
+import { Container, Box, Flex } from "@chakra-ui/react";
 
 //hooks
-import GetCaseSummaryData from './adapters/GetCaseSummaryData';
-import GetCountriesCasesData from './adapters/GetCountriesCasesData';
-import GetCaseTimelineData from './adapters/GetCaseTimelineData';
-import { useState } from 'react';
+import GetCaseSummaryData from "./adapters/GetCaseSummaryData";
+import GetCountriesCasesData from "./adapters/GetCountriesCasesData";
+import GetCaseTimelineData from "./adapters/GetCaseTimelineData";
+import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
-import Breadcrumbs from './components/Breadcrumbs';
-import Footer from './components/Footer';
-import CaseDataRates from './components/CaseDataRates';
-import CountryTable from './components/CountryTable';
+import Breadcrumbs from "./components/Breadcrumbs";
+import Footer from "./components/Footer";
+import CaseDataRates from "./components/CaseDataRates";
+import CountryTable from "./components/CountryTable";
 
 function App() {
   const toast = useToast();
@@ -25,7 +25,8 @@ function App() {
       toast({
         id: id,
         title: "Error " + (error.response && error.status),
-        description: ((error.response && error.response) || "Unknown error occurred"),
+        description:
+          (error.response && error.response) || "Unknown error occurred",
         status: "error",
         duration: 10000,
         isClosable: true,
@@ -44,27 +45,39 @@ function App() {
     setPeriod(parseInt(e.target.value));
   };
 
-  const [Data, setData] = useState('cases'); //Type of cases to display in timeline
+  const [Data, setData] = useState("cases"); //Type of cases to display in timeline
   const CaseTypeSelector = (e) => {
     setData(e.target.value);
   };
 
   const SearchController = (e, country) => {
-    if (e.target.value !== '-99') {
+    if (e.target.value !== "-99") {
       setSearchISO3(e.target.value);
       setCountryName(country);
     }
   };
 
-  const [SearchISO3, setSearchISO3] = useState('');
-  const [CountryName, setCountryName] = useState('');
+  const [SearchISO3, setSearchISO3] = useState("");
+  const [CountryName, setCountryName] = useState("");
 
-  const { caseSummaryData, caseChartData, caseDataRates, SummaryIsLoading } = GetCaseSummaryData(SearchISO3, ErrorHandler);
-  const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(ErrorHandler);
-  const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(SearchISO3, Period, Sort, ErrorHandler);
+  const {
+    caseSummaryData,
+    caseChartData,
+    caseDataRates,
+    SummaryIsLoading,
+  } = GetCaseSummaryData(SearchISO3, ErrorHandler);
+  const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(
+    ErrorHandler
+  );
+  const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(
+    SearchISO3,
+    Period,
+    Sort,
+    ErrorHandler
+  );
 
   return (
-    <Container maxW='7xl' maxH="min-content" pos="relative">
+    <Container maxW="7xl" maxH="min-content" pos="relative">
       <Header data={CountryData} SearchController={SearchController} />
       <Breadcrumbs country={CountryName} SearchController={SearchController} />
       <Flex direction="row" maxH="min-content">
@@ -74,17 +87,20 @@ function App() {
             isPending={SummaryIsLoading}
             chartData={caseChartData}
           />
-          <Box mt={6} display={{ base: 'block', lg: 'none' }}>
+          <Box mt={6} display={{ base: "block", lg: "none" }}>
             <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
           </Box>
-          <WorldMap
-            isLoading={CountryDataIsLoading}
-            data={CountryData}
-          />
-          <Box mt={6} display={{ base: 'block', lg: 'none' }}>
-            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} SearchISO3={SearchISO3} />
+          <WorldMap isLoading={CountryDataIsLoading} data={CountryData} />
+          <Box mt={6} display={{ base: "block", lg: "none" }}>
+            <CountryTable
+              data={CountryData}
+              isLoading={CountryDataIsLoading}
+              SearchController={SearchController}
+              SearchISO3={SearchISO3}
+            />
           </Box>
           <CaseTimeline
+            Sort={Sort}
             isLoading={timelineIsLoading}
             data={caseTimeLineData && caseTimeLineData[Data]}
             PeriodSelector={PeriodSelector}
@@ -92,15 +108,20 @@ function App() {
             SortController={SortController}
           />
         </Box>
-        <Box flex={1} display={{ base: 'none', lg: 'block' }}>
+        <Box flex={1} display={{ base: "none", lg: "block" }}>
           <Flex direction="column" h="100%" ml={6}>
             <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
-            <CountryTable data={CountryData} isLoading={CountryDataIsLoading} SearchController={SearchController} SearchISO3={SearchISO3} />
+            <CountryTable
+              data={CountryData}
+              isLoading={CountryDataIsLoading}
+              SearchController={SearchController}
+              SearchISO3={SearchISO3}
+            />
           </Flex>
         </Box>
       </Flex>
       <Footer />
-    </Container >
+    </Container>
   );
 }
 
