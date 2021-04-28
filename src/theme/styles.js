@@ -72,11 +72,7 @@ const styles = {
         },
         "button, textarea, input, select, a": {
             WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-            WebkitUserSelect: 'transparent',
-            KhtmlUserSelect: 'none',
-            MozUserSelect: 'none',
-            msUserSelect: "none",
-            userSelect: "none"
+            WebkitUserSelect: 'transparent'
         }
     }),
 };
