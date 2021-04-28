@@ -21,9 +21,10 @@ const Footer = () => {
         color={color}
         fontWeight="600"
         wrap="wrap"
-        justifyContent="center"
+        justifyContent="space-between"
+        mx={-6}
       >
-        <Text my={3} mx={12} textAlign="center">
+        <Text flexGrow={{ base: 1, md: 0 }} mx={6} my={3} textAlign="center">
           Source:{" "}
           <Link
             isExternal={true}
@@ -39,13 +40,13 @@ const Footer = () => {
             JHUCSSE
           </Link>
         </Text>
-        <Text my={3} mx={12} textAlign="center">
+        <Text flexGrow={1} mx={6} my={3} textAlign="center">
           Designed and developed by{" "}
           <Link isExternal={true} href="https://stepanpavlov.com">
             Stepan Pavlov
           </Link>
         </Text>
-        <Box my={3} mx={12}>
+        <Box flexGrow={{ base: 1, md: 0 }} mx={6} my={3} textAlign="center">
           <Button onClick={onOpen} variant="link" color={color}>
             Report a bug
           </Button>
