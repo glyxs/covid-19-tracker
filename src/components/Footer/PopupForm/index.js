@@ -23,23 +23,26 @@ const PopupForm = ({ isOpen, onClose }) => {
             <ModalContent mx={3}>
                 <ModalHeader>Report a bug</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody>
-                    <Textarea variant="filled" maxH="50vh" minH="20vh" placeholder="What went wrong?" mb={3} />
-                    <InputGroup mb={3}>
-                        <InputLeftElement
-                            pointerEvents="none"
-                            children={<IoIosMail fontSize="25px" />}
-                        />
-                        <Input variant="filled" type="email" placeholder="Your Email" />
-                    </InputGroup>
-                    <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only.</Text>
-                </ModalBody>
-                <ModalFooter>
-                    <Button variant="ghost" mr={3} onClick={onClose}>Cancel</Button>
-                    <Button colorScheme="red">
-                        Submit
+                <form name="reportBug" method="post">
+                    <input type="hidden" name="bugReport" value="reportBug" />
+                    <ModalBody>
+                        <Textarea name="message" variant="filled" maxH="50vh" minH="20vh" placeholder="What went wrong?" mb={3} />
+                        <InputGroup mb={3}>
+                            <InputLeftElement
+                                pointerEvents="none"
+                                children={<IoIosMail fontSize="25px" />}
+                            />
+                            <Input variant="filled" type="email" name="email" placeholder="Your Email" />
+                        </InputGroup>
+                        <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only.</Text>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button variant="ghost" mr={3} onClick={onClose}>Cancel</Button>
+                        <Button colorScheme="red" type="submit">
+                            Submit
                         </Button>
-                </ModalFooter>
+                    </ModalFooter>
+                </form>
             </ModalContent>
         </Modal>
     );
