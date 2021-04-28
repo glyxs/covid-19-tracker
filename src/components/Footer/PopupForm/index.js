@@ -23,8 +23,12 @@ const PopupForm = ({ isOpen, onClose }) => {
             <ModalContent mx={3}>
                 <ModalHeader>Report a bug</ModalHeader>
                 <ModalCloseButton />
-                <form name="reportBug" method="post">
-                    <input type="hidden" name="bugReport" value="reportBug" />
+                <form name="reportBug" method="post" data-netlify="true" onSubmit="submit" data-netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="reportBug" />
+
+                    <div hidden>
+                        <input name="bot-field" />
+                    </div>
                     <ModalBody>
                         <Textarea name="message" variant="filled" maxH="50vh" minH="20vh" placeholder="What went wrong?" mb={3} />
                         <InputGroup mb={3}>
