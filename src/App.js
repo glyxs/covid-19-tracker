@@ -77,7 +77,7 @@ function App() {
   );
 
   return (
-    <Container maxW="7xl" maxH="min-content" pos="relative">
+    <Container maxW="7xl" maxH="min-content" pos="relative" overflowX="hidden">
       <Header data={CountryData} SearchController={SearchController} />
       <Breadcrumbs country={CountryName} SearchController={SearchController} />
       <Flex direction="row" maxH="min-content">
