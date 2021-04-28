@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+![Covid Tracker Logo](https://raw.githubusercontent.com/glyxs/covid-19-tracker/master/public/logo.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# COVID 19 | Coronavirus Tracker
 
-## Available Scripts
+COVID 19 | Coronavirus Tracker is an app designed and developed to keep track of the latest trend development of SARS COVID-19, featuring various data and statistics such as confirmed, active, recovered, new and death cases, represented in form of charts and a choropleth map.
 
-In the project directory, you can run:
+Cases data is being taken from trusted sources of [Worldometers](https://www.worldometers.info/coronavirus/) and [JHUCSSE](https://github.com/CSSEGISandData/COVID-19) with the help of [Open Disease Data API](https://disease.sh/) and design inspiration taken from [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
 
-### `npm start`
+## [Live View](https://covid-corona-tracker.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screenshot of the app](https://i.ibb.co/rfWM5r9/screencapture-localhost-3000-2021-04-28-11-03-37.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Key Features
 
-### `npm test`
+### Interactive Charts
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users can hover on any of the charts to see details of date and number of cases
 
-### `npm run build`
+![Chart interaction](https://i.giphy.com/media/mwqeHA92G17EdXiS42/giphy.webp)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Flexible data controls
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Data displayed in charts and tables can be sorted by multiple parameters: by case type, weekly or daily, and by period of time.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Datachart controls](https://i.giphy.com/media/Ppj1A9OkPacRoRwRvk/giphy.webp)
+![Datatable controls](https://i.giphy.com/media/DF2tLWnYNG4xFdTgfy/giphy.webp)
 
-### `npm run eject`
+### Dark Mode Enabled
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+App will automatically set color scheme to the user's system preferred mode, but they can always toggle it using the Dark Mode switch
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Dark Mode toggle](https://i.giphy.com/media/bv7sDk2WrQAVFOO5of/giphy.webp)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Responsive Design
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Pixel-perfected for all screen sizes and resolutions.
 
-## Learn More
+![Device mockup](https://i.ibb.co/FnWvqPW/Screenshot-2021-04-28-115957.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## How it works
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app is powered by [React](https://reactjs.org/) library with node.js at its core. it is initialized with create-react-app and it uses [Chakra UI](https://github.com/chakra-ui/chakra-ui) components throughout the whole UI.
 
-### Code Splitting
+For chart data representation, the app uses [Chart.js](https://www.chartjs.org/) library with [react-chartjs-2](https://github.com/reactchartjs/react-chartjs-2) wrapper for React.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Map component is build with the use of [React-Leaflet](https://react-leaflet.js.org/) library, with country polygons being drawn from Datahub.io [World GeoJSON](https://datahub.io/core/geo-countries).
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+As for the data, the app makes an async/await .GET request to the [Open Disease Data API](https://disease.sh/) using [Axios](https://github.com/axios/axios) processing the data to the needed format and distributing it to all the components as requested.
