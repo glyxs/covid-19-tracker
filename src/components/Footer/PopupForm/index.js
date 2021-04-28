@@ -17,13 +17,31 @@ import React from 'react';
 import { IoIosMail } from 'react-icons/io';
 
 const PopupForm = ({ isOpen, onClose }) => {
+
+    const encode = (data) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+                "form-name": event.target.getAttribute("name")
+            })
+        }).then(() => alert("thank-you")).catch(error => alert(error));
+    };
+
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent mx={3}>
                 <ModalHeader>Report a bug</ModalHeader>
                 <ModalCloseButton />
-                <form name="reportBug" method="post" data-netlify="true" onSubmit="submit" data-netlify-honeypot="bot-field">
+                <form name="reportBug" method="post" data-netlify="true" onSubmit={handleSubmit} data-netlify-honeypot="bot-field">
                     <input type="hidden" name="form-name" value="reportBug" />
 
                     <div hidden>
