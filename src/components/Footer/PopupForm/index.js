@@ -13,10 +13,13 @@ import {
     Input,
     Textarea
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosMail } from 'react-icons/io';
 
 const PopupForm = ({ isOpen, onClose }) => {
+
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
 
     const encode = (data) => {
         return Object.keys(data)
@@ -30,9 +33,9 @@ const PopupForm = ({ isOpen, onClose }) => {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
-                "form-name": event.target.getAttribute("name")
+                "form-name": event.target.getAttribute("name"), message, email
             })
-        }).then(() => alert("thank-you")).catch(error => alert(error));
+        }).then(() => alert("Thank You")).catch(error => alert(error));
     };
 
     return (
@@ -48,13 +51,20 @@ const PopupForm = ({ isOpen, onClose }) => {
                         <input name="bot-field" />
                     </div>
                     <ModalBody>
-                        <Textarea name="message" variant="filled" maxH="50vh" minH="20vh" placeholder="What went wrong?" mb={3} />
+                        <Textarea
+                            onChange={(e) => { setMessage(e.target.value); }}
+                            name="message"
+                            variant="filled"
+                            maxH="50vh"
+                            minH="20vh"
+                            placeholder="What went wrong?"
+                            mb={3} />
                         <InputGroup mb={3}>
                             <InputLeftElement
                                 pointerEvents="none"
                                 children={<IoIosMail fontSize="25px" />}
                             />
-                            <Input variant="filled" type="email" name="email" placeholder="Your Email" />
+                            <Input onChange={(e) => { setEmail(e.target.value); }} variant="filled" type="email" name="email" placeholder="Your Email" />
                         </InputGroup>
                         <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only.</Text>
                     </ModalBody>
