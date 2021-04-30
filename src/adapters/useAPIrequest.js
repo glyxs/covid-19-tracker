@@ -10,8 +10,6 @@ const useAPIrequest = (APIstr) => {
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        setRequestError(null);
-
         GetRequest(APIstr, source);
 
         return () => {
@@ -20,6 +18,8 @@ const useAPIrequest = (APIstr) => {
     }, [APIstr]);
 
     const GetRequest = async (APIstring, source) => {
+
+        setRequestError(null);
 
         setTimeout(() => {
             source.cancel('Response timed out');

@@ -19,11 +19,12 @@ import CountryTable from "./components/CountryTable";
 function App() {
   const toast = useToast();
 
-  const ErrorHandler = (error) => {
-    console.log(error);
-    const id = error.message;
+  var err = "";
 
-    if (!toast.isActive(id)) {
+  const ErrorHandler = (error) => {
+    const id = error.message;
+    if (!toast.isActive(id) && err !== error.message) {
+      err = error.message;
       toast({
         id,
         title: error.request ? "Request error occured" : error.response ? "Response error occured" : "Error",
