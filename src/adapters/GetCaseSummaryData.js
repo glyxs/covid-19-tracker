@@ -9,7 +9,6 @@ const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
     const [caseSummaryData, setCaseSummaryData] = useState(null);
     const [caseChartData, setCaseChartData] = useState(null);
     const [caseDataRates, setCaseDataRates] = useState(null);
-    const [SummaryIsLoading, setSummaryIsLoading] = useState(true);
     const [Scope, setScope] = useState('all');
 
 
@@ -38,7 +37,6 @@ const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
 
             processDataRates(ans, days);
 
-            setSummaryIsLoading(false);
         };
 
         const days = DaysBetween(new Date("December 31, 2019"), new Date());
@@ -124,7 +122,7 @@ const GetCaseSummaryData = (SearchISO3, ErrorHandler) => {
         setCaseDataRates(dataRates);
     };
 
-    return { caseSummaryData, caseChartData, caseDataRates, SummaryIsLoading };
+    return { caseSummaryData, caseChartData, caseDataRates };
 };
 
 export default GetCaseSummaryData;

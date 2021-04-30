@@ -9,7 +9,7 @@ import { Container, Box, Flex } from "@chakra-ui/react";
 import GetCaseSummaryData from "./adapters/GetCaseSummaryData";
 import GetCountriesCasesData from "./adapters/GetCountriesCasesData";
 import GetCaseTimelineData from "./adapters/GetCaseTimelineData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Footer from "./components/Footer";
@@ -43,6 +43,7 @@ function App() {
   const [Period, setPeriod] = useState(3); //Period of the case timeline in months
   const PeriodSelector = (e) => {
     setPeriod(parseInt(e.target.value));
+    setTimelineIsLoading(true);
   };
 
   const [Data, setData] = useState("cases"); //Type of cases to display in timeline
@@ -50,10 +51,15 @@ function App() {
     setData(e.target.value);
   };
 
+  const [SummaryIsLoading, setSummaryIsLoading] = useState(true);
+  const [timelineIsLoading, setTimelineIsLoading] = useState(true);
+
   const SearchController = (e, country) => {
     if (e.target.value !== "-99") {
       setSearchISO3(e.target.value);
       setCountryName(country);
+      setSummaryIsLoading(true);
+      setTimelineIsLoading(true);
     }
   };
 
@@ -64,17 +70,31 @@ function App() {
     caseSummaryData,
     caseChartData,
     caseDataRates,
-    SummaryIsLoading,
   } = GetCaseSummaryData(SearchISO3, ErrorHandler);
+
+  useEffect(() => {
+    if (caseSummaryData && caseSummaryData !== null) {
+      setSummaryIsLoading(false);
+    }
+  }, [caseSummaryData]);
+
   const { CountryData, CountryDataIsLoading } = GetCountriesCasesData(
     ErrorHandler
   );
-  const { caseTimeLineData, timelineIsLoading } = GetCaseTimelineData(
+
+
+  const { caseTimeLineData } = GetCaseTimelineData(
     SearchISO3,
     Period,
     Sort,
     ErrorHandler
   );
+
+  useEffect(() => {
+    if (caseTimeLineData && caseTimeLineData !== null) {
+      setTimelineIsLoading(false);
+    }
+  }, [caseTimeLineData]);
 
   return (
     <Container maxW="7xl" maxH="min-content" pos="relative" overflowX="hidden">

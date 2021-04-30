@@ -6,7 +6,6 @@ import DaysBetween from '../helpers/DaysBetween';
 const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
 
     const [caseTimeLineData, setCaseTimeLineData] = useState(null);
-    const [timelineIsLoading, setTimelineIsLoading] = useState(true);
 
     var d1 = new Date();
     if (period !== 0) {
@@ -100,11 +99,10 @@ const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
             }
 
             setCaseTimeLineData(chartData);
-            setTimelineIsLoading(false);
         };
     };
 
-    return { caseTimeLineData, timelineIsLoading };
+    return { caseTimeLineData };
 };
 
 export default GetCaseTimelineData;
