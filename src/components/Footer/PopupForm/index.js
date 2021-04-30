@@ -11,12 +11,16 @@ import {
     InputGroup,
     InputLeftElement,
     Input,
-    Textarea
+    Textarea,
+    useToast
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { IoIosMail } from 'react-icons/io';
 
 const PopupForm = ({ isOpen, onClose }) => {
+
+    const toast = useToast();
+    let id = null;
 
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -35,7 +39,31 @@ const PopupForm = ({ isOpen, onClose }) => {
             body: encode({
                 "form-name": event.target.getAttribute("name"), message, email
             })
-        }).then(() => alert("Thank You")).catch(error => alert(error));
+        }).then(() => {
+            onClose();
+            toast({
+                title: "Thank you!",
+                description: 'Your report was submitted',
+                status: "success",
+                duration: 10000,
+                isClosable: true,
+            });
+        }).catch((error) => {
+            id = error.status;
+            if (!toast.isActive(id)) {
+                toast({
+                    id: id,
+                    title: "Error " + (error.response && error.status),
+                    description:
+                        (error.response && error.response) || "Unknown error occurred",
+                    status: "error",
+                    duration: 10000,
+                    isClosable: true,
+                });
+            }
+            console.log(error);
+        }
+        );
     };
 
     return (
@@ -58,13 +86,14 @@ const PopupForm = ({ isOpen, onClose }) => {
                             maxH="50vh"
                             minH="20vh"
                             placeholder="What went wrong?"
-                            mb={3} />
+                            mb={3}
+                            isRequired={true} />
                         <InputGroup mb={3}>
                             <InputLeftElement
                                 pointerEvents="none"
                                 children={<IoIosMail fontSize="25px" />}
                             />
-                            <Input onChange={(e) => { setEmail(e.target.value); }} variant="filled" type="email" name="email" placeholder="Your Email" />
+                            <Input isRequired={true} onChange={(e) => { setEmail(e.target.value); }} variant="filled" type="email" name="email" placeholder="Your Email" />
                         </InputGroup>
                         <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only.</Text>
                     </ModalBody>
