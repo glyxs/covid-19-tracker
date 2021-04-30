@@ -10,6 +10,8 @@ const useAPIrequest = (APIstr) => {
     useEffect(() => {
         const source = axios.CancelToken.source();
 
+        setRequestError(null);
+
         GetRequest(APIstr, source);
 
         return () => {

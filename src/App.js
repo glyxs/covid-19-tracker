@@ -20,18 +20,18 @@ function App() {
   const toast = useToast();
 
   const ErrorHandler = (error) => {
-    let id = error.status;
+    console.log(error);
+    const id = error.message;
+
     if (!toast.isActive(id)) {
       toast({
-        id: id,
-        title: "Error " + (error.response && error.status),
-        description:
-          (error.response && error.response) || "Unknown error occurred",
+        id,
+        title: error.request ? "Request error occured" : error.response ? "Response error occured" : "Error",
+        description: error.message ? error.message : "Unknown error",
         status: "error",
         duration: 10000,
         isClosable: true,
       });
-      console.log(error);
     }
   };
 

@@ -39,14 +39,8 @@ const GetCaseTimelineData = (SearchISO3, period, Sort, ErrorHandler) => {
     }, [response, Sort]);
 
     useEffect(() => {
-        if (requestError) {
-            if (requestError.response) {
-                ErrorHandler(requestError.response);
-            } else if (requestError.request) {
-                ErrorHandler(requestError.request);
-            } else {
-                ErrorHandler(requestError);
-            }
+        if (requestError && requestError !== null) {
+            ErrorHandler(requestError);
         }
     }, [requestError, ErrorHandler]);
 
