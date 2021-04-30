@@ -7,7 +7,7 @@ import MapLegend from './MapLegend';
 import 'leaflet/dist/leaflet.css';
 
 
-const WorldMap = ({ isLoading, data }) => {
+const WorldMap = ({ isLoading, data, SearchController }) => {
 
     const { colorMode } = useColorMode();
     const bg = useColorModeValue("white", "gray.800");
@@ -61,7 +61,7 @@ const WorldMap = ({ isLoading, data }) => {
                         <GeoJSON
                             style={mapStyle}
                             data={data && data}
-                            onEachFeature={OnEachCountry}
+                            onEachFeature={OnEachCountry(SearchController)}
                         />
                     </MapContainer>) || <Box h={500}></Box>}
                 </Box>

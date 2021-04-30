@@ -55,11 +55,11 @@ function App() {
   const [timelineIsLoading, setTimelineIsLoading] = useState(true);
 
   const SearchController = (e, country) => {
-    if (e.target.value !== "-99") {
-      setSearchISO3(e.target.value);
-      setCountryName(country);
+    if (e.target.value !== "-99" && e.target.value !== SearchISO3) {
       setSummaryIsLoading(true);
       setTimelineIsLoading(true);
+      setSearchISO3(e.target.value);
+      setCountryName(country);
     }
   };
 
@@ -110,7 +110,7 @@ function App() {
           <Box mt={6} display={{ base: "block", lg: "none" }}>
             <CaseDataRates data={caseDataRates} isLoading={SummaryIsLoading} />
           </Box>
-          <WorldMap isLoading={CountryDataIsLoading} data={CountryData} />
+          <WorldMap isLoading={CountryDataIsLoading} data={CountryData} SearchController={SearchController} />
           <Box mt={6} display={{ base: "block", lg: "none" }}>
             <CountryTable
               data={CountryData}
