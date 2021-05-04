@@ -1,18 +1,33 @@
 export const options = {
-    legend: {
-        display: false
-    },
-    tooltips: {
-        custom: function (tooltip) {
-            if (!tooltip) return;
-            tooltip.displayColors = false;
+    plugins: {
+        legend: {
+            display: false
         },
-        callbacks: {
-            label: function (tooltipItem) {
-                return tooltipItem.yLabel.toLocaleString() + " Total Cases";
+        tooltip: {
+            mode: 'index',
+            intersect: false,
+            displayColors: false,
+            callbacks: {
+                label: function (context) {
+                    var label = context.dataset.label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    if (context.parsed.y !== null) {
+                        label += (context.parsed.y).toLocaleString();
+                        label += ' Cases';
+                    }
+                    return label;
+                }
             }
         },
-        mode: 'x-axis'
+
+    },
+    elements: {
+        bar: {
+            borderRadius: 10
+        }
     },
     responsive: true,
     maintainAspectRatio: false

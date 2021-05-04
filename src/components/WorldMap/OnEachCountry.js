@@ -1,5 +1,6 @@
-const OnEachCountry = (SearchController) => {
-    return function onEachFeature(country, layer) {
+const OnEachCountry = (searchController) => {
+
+    const onEachFeature = (country, layer) => {
         const name = country.properties.ADMIN;
         const confirmed = country.properties.confirmed;
         const active = country.properties.active;
@@ -11,7 +12,7 @@ const OnEachCountry = (SearchController) => {
 
         window.handlePopUpClick = (ISO_A3, countryName) => {
             let e = { target: { value: ISO_A3 } };
-            SearchController(e, countryName);
+            searchController(e, countryName);
         };
 
         const popUpContent = `
@@ -25,7 +26,7 @@ const OnEachCountry = (SearchController) => {
             <br /><span style="color: #2DD249">${recovered} Total Recovered</span>
             <br /><span style="color: #FF0E00">${deaths} Total Deaths</span>
         </p>
-        <br /><span><button onclick="handlePopUpClick('${ISO3}', '${name}')">View Summary</button></span>
+        <br /><button onclick="handlePopUpClick('${ISO3}', '${name}')">View Summary</button>
         `;
 
         if (confirmed !== 0) {
@@ -41,6 +42,8 @@ const OnEachCountry = (SearchController) => {
             `);
         }
     };
+
+    return onEachFeature;
 };
 
 export default OnEachCountry;

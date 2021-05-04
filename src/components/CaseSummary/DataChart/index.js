@@ -4,30 +4,27 @@ import { options } from "./options";
 import React from "react";
 
 const DataChart = ({ data, isLoading }) => {
-  const bg = useColorModeValue("white", "gray.800");
-  const gradientBg = useColorModeValue(
+  const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+  const gradientStartColor = useColorModeValue(
     "rgba(255, 255, 255, 0)",
     "rgba(51, 51, 51, 0)"
   );
-  const gradient = "linear(to-t, " + bg + ", " + gradientBg + ")";
+  const gradient = "linear(to-t, " + bg + ", " + gradientStartColor + ")";
 
   return (
-    <Skeleton pos="relative" zIndex="5" isLoaded={!isLoading} bg="transparent">
+    <Skeleton pos="relative" zIndex="5" isLoaded={!isLoading && data} bg="transparent" height="80px">
       <Box
         pos="absolute"
         zIndex="6"
         w="100%"
-        h="50px"
+        h="40%"
         bottom="0"
         left="0"
         pointerEvents="none"
         bgGradient={gradient}
       />
       <Line
-        height={150}
-        data={
-          (data && data) || { labels: [1, 2], datasets: [{ data: [1, 2] }] }
-        }
+        data={data && data}
         options={options}
       />
     </Skeleton>

@@ -7,8 +7,16 @@ const styles = {
             backgroundColor: mode("gray.50", "gray.900")(props),
             color: mode("gray.800", "gray.100")(props)
         },
+        '.js-focus-visible :focus:not([data-focus-visible-added])': {
+            outline: "none",
+            boxShadow: "none"
+        },
         ".ButtonLink": {
             textDecoration: "none !important"
+        },
+        "button, textarea, input, select, a": {
+            WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
+            WebkitUserSelect: 'transparent'
         },
         ".leaflet-touch .leaflet-bar": {
             border: 'none'
@@ -66,14 +74,6 @@ const styles = {
             background: "rgba(0, 0, 0, 0.8)",
             color: "white",
         },
-        '.js-focus-visible :focus:not([data-focus-visible-added])': {
-            outline: "none",
-            boxShadow: "none"
-        },
-        "button, textarea, input, select, a": {
-            WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-            WebkitUserSelect: 'transparent'
-        }
     }),
 };
 export default styles;

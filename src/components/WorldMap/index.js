@@ -1,5 +1,4 @@
-import { Box, Skeleton, useColorModeValue, useColorMode } from '@chakra-ui/react';
-import { lighten, darken } from '@chakra-ui/theme-tools';
+import { Box, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import { MapContainer, GeoJSON } from 'react-leaflet';
 import OnEachCountry from './OnEachCountry';
 import React, { useState, useEffect } from 'react';
@@ -7,20 +6,20 @@ import MapLegend from './MapLegend';
 import 'leaflet/dist/leaflet.css';
 
 
-const WorldMap = ({ isLoading, data, SearchController }) => {
+const WorldMap = ({ data, searchController }) => {
 
-    const { colorMode } = useColorMode();
-    const bg = useColorModeValue("white", "gray.800");
-    const [show, setShow] = useState(false);
+    const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+    const bgHover = useColorModeValue("bg.boxBgHoverLight", "bg.boxBgHoverDark");
+
+    const [mapIsLoading, setMapIsLoading] = useState(true);
 
     useEffect(() => {
-        // delay map load by 2 seconds to avoid bottleneck with GeoJSON
-        if (!isLoading) {
-            setTimeout(() => {
-                setShow(true);
-            }, 2000);
+        if (data && data !== null) {
+            setMapIsLoading(false);
+        } else {
+            setMapIsLoading(true);
         }
-    }, [isLoading]);
+    }, [data]);
 
     const mapStyle = {
         fillColor: 'white',
@@ -28,6 +27,11 @@ const WorldMap = ({ isLoading, data, SearchController }) => {
         color: '#808080',
         fillOpacity: 1
     };
+
+    const defaultBounds = [
+        [-60, -180],
+        [90, 180]
+    ];
 
     return (
         <Box
@@ -37,19 +41,17 @@ const WorldMap = ({ isLoading, data, SearchController }) => {
             my={6}>
             <MapLegend />
             <Skeleton
-                isLoaded={!isLoading}>
+                isLoaded={!mapIsLoading}>
                 <Box
                     rounded='md'
-                    bg={colorMode === "light" ? darken(bg, 10) : lighten(bg, 10)}
+                    bg={bgHover}
                     pos='relative'>
-                    {(show && <MapContainer
+                    <MapContainer
                         zoom={2}
-                        maxBounds={[
-                            [-60, -180],
-                            [90, 180]
-                        ]}
+                        maxBounds={defaultBounds}
                         maxZoom={6}
                         minZoom={2}
+                        zoomSnap={0}
                         center={[30, 0]}
                         attributionControl={false}
                         style={{
@@ -61,9 +63,9 @@ const WorldMap = ({ isLoading, data, SearchController }) => {
                         <GeoJSON
                             style={mapStyle}
                             data={data && data}
-                            onEachFeature={OnEachCountry(SearchController)}
+                            onEachFeature={OnEachCountry(searchController)}
                         />
-                    </MapContainer>) || <Box h={500}></Box>}
+                    </MapContainer>
                 </Box>
             </Skeleton>
         </Box>

@@ -1,11 +1,10 @@
 import { Button, Link, useColorModeValue } from '@chakra-ui/react';
-import { lighten, darken } from '@chakra-ui/theme-tools';
 import React from 'react';
 
 const IconLinkButton = ({ href, text, icon }) => {
 
-    const bg = useColorModeValue("white", "gray.800");
-    const bgHover = useColorModeValue(darken(bg, 10), lighten(bg, 10));
+    const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+    const bgHover = useColorModeValue("bg.boxBgHoverLight", "bg.boxBgHoverDark");
 
     return (
         <Button as={Link}

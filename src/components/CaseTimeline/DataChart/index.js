@@ -8,11 +8,12 @@ const DataChart = ({ isLoading, data }) => {
         <SimpleGrid columns={1}>
             <Skeleton
                 position="relative"
-                isLoaded={!isLoading}
+                isLoaded={!isLoading && data}
                 w="100%"
                 h={300}>
                 <Bar
-                    data={(data && data) || { labels: [1, 2], datasets: [{ data: [1, 2] }] }}
+                    height={150}
+                    data={data && data}
                     options={options}
                 />
             </Skeleton>

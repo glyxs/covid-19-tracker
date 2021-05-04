@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
-const useAPIrequest = (APIstr) => {
+const useAPIrequest = (APIConString) => {
 
     const [response, setResponse] = useState(null);
     const [requestError, setRequestError] = useState(null);
@@ -10,14 +10,14 @@ const useAPIrequest = (APIstr) => {
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        GetRequest(APIstr, source);
+        makeGETRequest(APIConString, source);
 
         return () => {
             source.cancel();
         };
-    }, [APIstr]);
+    }, [APIConString]);
 
-    const GetRequest = async (APIstring, source) => {
+    const makeGETRequest = async (APIstring, source) => {
 
         setRequestError(null);
 
@@ -26,7 +26,7 @@ const useAPIrequest = (APIstr) => {
         }, 20000);
 
         await axios
-            .get(APIstring, { cancelToken: source.token }, { timeout: 10000 })
+            .get(APIstring, { cancelToken: source.token }, { timeout: 20000 })
             .then(res => {
                 setResponse(res.data);
             })

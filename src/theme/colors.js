@@ -1,5 +1,17 @@
 const colors = {
 
+    bg: {
+        boxBgLight: "#fff",
+        boxBgDark: "#333333",
+        boxBgHoverLight: "#DBDBDB",
+        boxBgHoverDark: "#4D4D4D",
+    },
+
+    color: {
+        secondaryLight: "#666666",
+        secondaryDark: "#969696"
+    },
+
     gray: {
         50: "#F2F2F2",
         100: "#DBDBDB",

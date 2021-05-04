@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 import colors from './colors';
 
-import styles from './styles';
+import styles from './globalStyles';
 
 import breakpoints from './breakpoints';
 

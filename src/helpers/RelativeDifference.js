@@ -1,4 +1,6 @@
-const RelativeDifference = (a, b) => {
-    return 100 * Math.abs((a - b) / ((a + b) / 2));
+const relativeDifference = (oldNumber, newNumber) => {
+    var decreaseValue = oldNumber - newNumber;
+
+    return Math.abs((decreaseValue / oldNumber) * 100);
 };
-export default RelativeDifference;
+export default relativeDifference;

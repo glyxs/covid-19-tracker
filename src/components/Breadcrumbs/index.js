@@ -1,17 +1,12 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import {
-    HStack,
-    Heading,
-    Button,
-    Tooltip
-} from "@chakra-ui/react";
+import { HStack, Heading, Button, Tooltip } from "@chakra-ui/react";
 
-const Breadcrumbs = ({ country, SearchController }) => {
+const Breadcrumbs = ({ country, searchController }) => {
 
     return (
         <HStack spacing={2} alignItems="baseline" mb={6}>
-            <Tooltip rounded="lg" label={country !== '' ? "Show global summary" : "Showing global summary"} >
+            <Tooltip rounded="lg" label={country && country !== '' ? "Show global summary" : "Showing global summary"} >
                 <Button
                     p={0}
                     size="xs"
@@ -23,13 +18,13 @@ const Breadcrumbs = ({ country, SearchController }) => {
                     cursor="pointer"
                     value=''
                     onClick={e => {
-                        SearchController(e, '');
+                        searchController(e, '');
                     }}
                 >Global</Button>
             </Tooltip>
             <FiChevronRight />
             <Heading fontWeight={600} as='h3' size='md' lineHeight={1}>{country && country}</Heading>
-            {country !== '' && <FiChevronRight />}
+            {country && country !== '' && <FiChevronRight />}
         </HStack>
     );
 };

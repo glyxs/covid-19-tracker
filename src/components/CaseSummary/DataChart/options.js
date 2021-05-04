@@ -1,40 +1,53 @@
 export const options = {
+
     layout: {
         padding: {
             left: 5,
             right: 5,
         }
     },
-    legend: {
-        display: false
-    },
-    tooltips: {
-        custom: function (tooltip) {
-            if (!tooltip) return;
-            tooltip.displayColors = false;
-        },
-        callbacks: {
-            label: function (tooltipItem) {
-                return tooltipItem.yLabel.toLocaleString() + " cases";
-            }
-        },
-        mode: 'x-axis'
-    },
-    scales: {
-        xAxes: [{
+
+    plugins: {
+        legend: {
             display: false
-        }],
-        yAxes: [{
-            display: false,
-            ticks: {
-                beginAtZero: true,
+        },
+        tooltip: {
+            mode: 'index',
+            intersect: false,
+            displayColors: false,
+            callbacks: {
+                label: function (context) {
+                    var label = context.dataset.label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    if (context.parsed.y !== null) {
+                        label += (context.parsed.y).toLocaleString();
+                        label += context.parsed.y > 0 ? ' New Cases' : ' Cases';
+                    }
+                    return label;
+                }
             }
-        }]
+        },
+
     },
+
+    scales: {
+        x: {
+            display: false
+        },
+        y: {
+            min: 0,
+            display: false,
+        }
+    },
+
     elements: {
         point: {
             radius: 0
         }
     },
-    responsive: true
+    responsive: true,
+    maintainAspectRatio: false
 }

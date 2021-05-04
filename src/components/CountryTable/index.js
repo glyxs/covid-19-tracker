@@ -1,41 +1,32 @@
 import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton, Select } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-const CountryTable = ({ data, isLoading, SearchController, SearchISO3 }) => {
+const CountryTable = ({ data, searchController, searchTerm }) => {
 
-    const [CountryData, setCountryData] = useState(null);
+    const [tableLoading, setTableIsLoading] = useState(true);
 
     useEffect(() => {
         if (data && data !== null) {
-            setCountryData(data);
+            setTableIsLoading(false);
+        } else {
+            setTableIsLoading(true);
         }
     }, [data]);
 
-    const bg = useColorModeValue("white", "gray.800");
-    const bg2 = useColorModeValue("gray.50", "gray.700");
-
-    const [Data, setData] = useState('confirmed');
+    const [DataType, setDataType] = useState('confirmed');
     const CaseTypeSelector = (e) => {
-        setData(e.target.value);
+        setDataType(e.target.value);
     };
 
+    const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+    const bgHover = useColorModeValue("bg.boxBgHoverLight", "bg.boxBgHoverDark");
+
+
+
     return (
-        <Box
-            rounded='xl'
-            boxShadow='xl'
-            p={3} bg={bg}
-            my={6}
-        >
-            <Box
-                display="flex"
-                flexDirection="row"
-                flexWrap="wrap">
-                <Heading
-                    flex="80%"
-                    fontWeight={600}
-                    as='h3'
-                    size='md'
-                    mb={3}>
+        <Box rounded='xl' boxShadow='xl' p={3} bg={bg} my={6}>
+            <Box display="flex" flexDirection="row" flexWrap="wrap">
+                <Heading flex="80%" fontWeight={600} as='h3' size='md' mb={3}>
                     Top Countries
                 </Heading>
                 <Select
@@ -51,44 +42,39 @@ const CountryTable = ({ data, isLoading, SearchController, SearchISO3 }) => {
                     <option value="deaths">Deaths</option>
                 </Select>
             </Box>
-
-            <Box
-                display="flex"
-                flexDirection="column">
+            <Box display="flex" flexDirection="column">
                 <hr />
-                <Skeleton isLoaded={!isLoading}>
+                <Skeleton isLoaded={!tableLoading && data}>
                     <Box w="100%" minW="230px" h={{ base: "300px", lg: "680px" }} overflowY="scroll" overflowX="hidden">
-                        {CountryData !== null && CountryData.filter((val) => {
-                            return val.properties.flag !== '';
-                        }).sort((a, b) => {
-                            return parseFloat(b.properties[Data].replace(/[^0-9-.]/g, '')) - parseFloat(a.properties[Data].replace(/[^0-9-.]/g, ''));
+                        {data && data.sort((a, b) => {
+                            return b[DataType] - a[DataType];
                         }).map((val, key) => {
                             return (
                                 <div key={key}>
                                     <Flex
-                                        bg={SearchISO3 === val.properties.ISO_A3 ? bg2 : bg}
-                                        title={'Click to view ' + val.properties.ADMIN + ' summary'}
+                                        bg={searchTerm === val.iso3 ? bgHover : bg}
+                                        title={'Click to view ' + val.country + ' summary'}
                                         onClick={e => {
-                                            e.target.value = val.properties.ISO_A3;
-                                            SearchController(e, val.properties.ADMIN);
+                                            e.target.value = val.iso3;
+                                            searchController(e, val.country);
                                         }}
                                         cursor="pointer"
                                         flexDirection="row"
                                         alignItems="center"
                                         p={2}
                                         _hover={{
-                                            bg: bg2
+                                            bg: bgHover
                                         }}
                                     >
                                         <Heading mr={1} size="xs" minW="28px" fontWeight={500}>{key + 1}.</Heading>
                                         <img
                                             style={{ borderRadius: "3px" }}
-                                            src={val.properties.flag}
-                                            alt={val.properties.ADMIN}
+                                            src={val.flag}
+                                            alt={val.country}
                                             height="20px" width="34px" />
-                                        <Heading mx={3} size="xs" fontWeight={500}>{val.properties.ADMIN}</Heading>
+                                        <Heading mx={3} size="xs" fontWeight={500}>{val.country}</Heading>
                                         <Spacer />
-                                        <Heading size="xs" mx={1}>{val.properties[Data]}</Heading>
+                                        <Heading size="xs" mx={1}>{val[DataType].toLocaleString()}</Heading>
                                     </Flex>
                                     <hr />
                                 </div>

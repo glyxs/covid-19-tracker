@@ -1,101 +1,45 @@
 import React, { useState } from "react";
-import {
-  InputGroup,
-  InputLeftElement,
-  Input,
-  useColorModeValue,
-  Button,
-  ModalBody,
-  VStack,
-  Box
-} from "@chakra-ui/react";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { lighten, darken } from "@chakra-ui/theme-tools";
+import { useColorModeValue, Button, ModalBody, VStack, Modal, ModalOverlay, ModalContent, ModalHeader, useDisclosure } from "@chakra-ui/react";
+import InputAsButton from "./InputAsButton";
+import SearchInput from "./SearchInput";
+import FlagImage from '../FlagImage';
 
-const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
+const SearchBar = ({ data, searchController }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const bg = useColorModeValue("white", "gray.800");
-  const bg2 = useColorModeValue("gray.50", "gray.900");
-  const bgHover = useColorModeValue(darken(bg, 10), lighten(bg, 10));
+  const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+  const bgHover = useColorModeValue("bg.boxBgHoverLight", "bg.boxBgHoverDark");
 
   const [SearchTerm, setSearchTerm] = useState('');
 
-  const CountryData = data;
-
   return (
     <>
-      <InputGroup>
-        <InputLeftElement pointerEvents="none" children={icon} />
-        <Input
-          as={Button}
-          boxShadow="md"
-          justifyContent="start"
-          fontWeight={400}
-          onClick={onOpen}
-          rounded="xl"
-          variant="filled"
-          bg={bg}
-          _hover={{
-            bg: bgHover,
-          }}
-          _focus={{
-            bg: bg,
-            boxShadow: "outline",
-          }}
-        >
-          {placeholder}
-        </Input>
-      </InputGroup>
+      <InputAsButton onOpen={onOpen} />
       <Modal isOpen={isOpen} onClose={() => {
         onClose();
         setSearchTerm('');
       }}>
         <ModalOverlay />
-        <ModalContent rounded="xl" p={3} bg={bg2} mx={3}>
+        <ModalContent rounded="xl" p={3} bg={bg} mx={3}>
           <ModalHeader p={0}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none" children={icon} />
-              <Input
-                onChange={
-                  e => { setSearchTerm(e.target.value); }
-                }
-                type={type}
-                placeholder={placeholder}
-                variant="filled"
-                bg={bg}
-                boxShadow="2xl"
-                _hover={{
-                  bg: bgHover,
-                }}
-                _focus={{
-                  bg: bg,
-                }}
-              />
-            </InputGroup>
+            <SearchInput setSearchTerm={setSearchTerm} />
           </ModalHeader>
-          {data !== null && <ModalBody
+          {data && <ModalBody
             p={0} mt={6}
             display={SearchTerm === '' ? "none" : "block"}
           >
             <VStack spacing={1}>
-              {SearchTerm !== "" && CountryData.filter((val) => {
-                return val.properties.flag && val.properties.ADMIN.toLowerCase().includes(SearchTerm.toLowerCase());
+              {data && SearchTerm !== "" && data.filter((val) => {
+                return val.country.toLowerCase().includes(SearchTerm.toLowerCase());
               }).map((val, key) => {
                 return (
                   <Button
                     onClick={e => {
-                      SearchController(e, val.properties.ADMIN);
+                      searchController(e, val.country);
                       onClose();
                       setSearchTerm('');
                     }}
-                    value={val.properties.ISO_A3}
+                    value={val.iso3}
                     key={key}
                     w="100%"
                     justifyContent="left"
@@ -108,13 +52,8 @@ const SearchBar = ({ type, icon, placeholder, data, SearchController }) => {
                       boxShadow: 'outline'
                     }}
                   >
-                    <Box mr={3}>
-                      <img
-                        src={val.properties.flag}
-                        alt={val.properties.ADMIN}
-                        height="20px" width="34px" />
-                    </Box>
-                    {val.properties.ADMIN}
+                    <FlagImage val={val} />
+                    {val.country}
                   </Button>
                 );
               })}

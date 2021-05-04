@@ -1,7 +1,7 @@
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme/index";
-import ReactDOM from 'react-dom';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
 import 'focus-visible/dist/focus-visible';
 
