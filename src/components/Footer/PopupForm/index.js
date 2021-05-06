@@ -8,6 +8,7 @@ const PopupForm = ({ isOpen, onClose, errorHandler }) => {
     const toast = useToast();
 
     const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
+    const color = useColorModeValue("color.secondaryLight", "color.secondaryDark");
 
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -56,7 +57,7 @@ const PopupForm = ({ isOpen, onClose, errorHandler }) => {
                             />
                             <Input isRequired={true} onChange={(e) => { setEmail(e.target.value); }} variant="filled" type="email" name="email" placeholder="Your Email" />
                         </InputGroup>
-                        <Text fontSize="sm" color="GrayText">Your Email is used for contact purposes only.</Text>
+                        <Text fontSize="sm" color={color}>Your Email is used for contact purposes only.</Text>
                     </ModalBody>
                     <ModalFooter>
                         <Button variant="ghost" mr={3} onClick={onClose}>Cancel</Button>
