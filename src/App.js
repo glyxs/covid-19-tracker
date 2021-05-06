@@ -1,5 +1,5 @@
 import { Container, Flex, Box, useToast } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumbs from "./components/Breadcrumbs";
 import CaseDataRates from "./components/CaseDataRates";
 import CaseSummary from "./components/CaseSummary";
@@ -14,19 +14,27 @@ import useCountryCasesData from "./hooks/useCountryCasesData";
 function App() {
   const toast = useToast();
 
+  const [currentError, setCurrentError] = useState(null);
+
   const errorHandler = (error) => {
-    const id = error.message;
-    if (!toast.isActive(id)) {
-      toast({
-        id,
-        title: error.request ? "Request error occured" : error.response ? "Response error occured" : "Error",
-        description: error.message ? error.message : "Unknown error",
-        status: "error",
-        duration: 10000,
-        isClosable: true,
-      });
-    }
+    setCurrentError(error);
   };
+
+  useEffect(() => {
+    if (currentError && currentError !== null) {
+      const id = currentError.message;
+      if (!toast.isActive(id)) {
+        toast({
+          id: id,
+          title: currentError.request ? "Request error occured" : currentError.response ? "Response error occured" : "Error",
+          description: currentError.message ? currentError.message : "Unknown error",
+          status: "error",
+          duration: 10000,
+          isClosable: true
+        });
+      }
+    }
+  }, [currentError, toast]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [countryName, setCountryName] = useState("");

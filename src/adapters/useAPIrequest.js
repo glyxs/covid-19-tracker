@@ -19,8 +19,6 @@ const useAPIrequest = (APIConString) => {
 
     const makeGETRequest = async (APIstring, source) => {
 
-        setRequestError(null);
-
         setTimeout(() => {
             source.cancel('Response timed out');
         }, 20000);
