@@ -9,7 +9,7 @@ const InputAsButton = ({ onOpen }) => {
 
     useEffect(() => {
         const handleBodyKeyDown = (e) => {
-            if (e.key === 's') {
+            if (e.keyCode === 83 && e.altKey) {
                 onOpen();
             }
         };
@@ -37,7 +37,7 @@ const InputAsButton = ({ onOpen }) => {
                 }}>
                 Search by Country
         </Input>
-            <InputRightElement display={{ base: "none", lg: "flex" }} pointerEvents="none" children={<Kbd>s</Kbd>} />
+            <InputRightElement mr={6} display={{ base: "none", lg: "flex" }} pointerEvents="none" children={<><Kbd>alt</Kbd> + <Kbd>s</Kbd></>} />
         </InputGroup>
     );
 };
