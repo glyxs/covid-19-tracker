@@ -1,4 +1,4 @@
-![Covid Tracker Logo](https://raw.githubusercontent.com/glyxs/covid-19-tracker/master/public/logo.png)
+![Covid Tracker Logo](https://i.imgur.com/NLAxbzE.png)
 
 # COVID 19 | Coronavirus Tracker
 
@@ -8,34 +8,52 @@ Cases data is being taken from trusted sources of [Worldometers](https://www.wor
 
 ## [Live View](https://covid-corona-tracker.netlify.app/)
 
-![Screenshot of the app](https://i.ibb.co/rfWM5r9/screencapture-localhost-3000-2021-04-28-11-03-37.png)
+![Screenshot of the app](https://i.imgur.com/n6lfemF.png)
 
 ## Key Features
+
+### Search-Enabled
+
+Users can easily search for specific country using search bar and other components
+
+![Search functionality](https://media2.giphy.com/media/1Fif5zk6TeQrVnTd4G/giphy.gif?cid=790b76116614d735e861a5b519387e5d99314354bc1fee3e&rid=giphy.gif&ct=g)
+
+### Interactive World Map
+
+Interactive choropleth map displays popup with details for each country.
+
+![Map interaction](https://media3.giphy.com/media/BPFrOdPl3OOdollQtE/giphy.gif?cid=790b7611c1256baeb9378c20b4b35b5fe2356fcd1128afa8&rid=giphy.gif&ct=g)
 
 ### Interactive Charts
 
 Users can hover on any of the charts to see details of date and number of cases
 
-![Chart interaction](https://i.giphy.com/media/mwqeHA92G17EdXiS42/giphy.webp)
+![Chart interaction](https://i.giphy.com/media/Ig2anMrXFK1T6tkDhK/giphy.webp)
 
 ### Flexible data controls
 
 Data displayed in charts and tables can be sorted by multiple parameters: by case type, weekly or daily, and by period of time.
 
-![Datachart controls](https://i.giphy.com/media/Ppj1A9OkPacRoRwRvk/giphy.webp)
-![Datatable controls](https://i.giphy.com/media/DF2tLWnYNG4xFdTgfy/giphy.webp)
+![Datachart controls](https://media4.giphy.com/media/EODcwOHVLwXo1gnsN5/giphy.gif?cid=790b7611da2d37e9679af1e170662729ee320a9d959275a6&rid=giphy.gif&ct=g)
+![Datatable controls](https://media1.giphy.com/media/JkhHxcorp3FAqY55xm/giphy.gif?cid=790b7611f330bebf9a84aca182f101eda309bc0087cdb59b&rid=giphy.gif&ct=g)
 
 ### Dark Mode Enabled
 
 App will automatically set color scheme to the user's system preferred mode, but they can always toggle it using the Dark Mode switch
 
-![Dark Mode toggle](https://i.giphy.com/media/bv7sDk2WrQAVFOO5of/giphy.webp)
+![Dark Mode toggle](https://media2.giphy.com/media/rLuOYBH8fuI5ynODZR/giphy.gif?cid=790b7611727c6402e9335103df7c508acb18da2d6700c405&rid=giphy.gif&ct=g)
 
 ### Responsive Design
 
 Pixel-perfected for all screen sizes and resolutions.
 
 ![Device mockup](https://i.ibb.co/FnWvqPW/Screenshot-2021-04-28-115957.png)
+
+### Bug Reporting
+
+Users are able to submit a bug report form to the Netlify dashboard.
+
+![Bug Reporting](https://media1.giphy.com/media/AZVYnAjlNG7pC4RE8m/giphy.gif?cid=790b7611e111240b1586ee3affae4329d7299a141732b700&rid=giphy.gif&ct=g)
 
 ## How it works
 
