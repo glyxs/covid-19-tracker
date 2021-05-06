@@ -1,4 +1,4 @@
-import { Box, Skeleton, useColorModeValue } from '@chakra-ui/react';
+import { Box, Fade, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import { MapContainer, GeoJSON } from 'react-leaflet';
 import OnEachCountry from './OnEachCountry';
 import React, { useState, useEffect } from 'react';
@@ -42,31 +42,33 @@ const WorldMap = ({ data, searchController }) => {
             <MapLegend />
             <Skeleton
                 isLoaded={!mapIsLoading}>
-                <Box
-                    rounded='md'
-                    bg={bgHover}
-                    pos='relative'>
-                    <MapContainer
-                        zoom={2}
-                        maxBounds={defaultBounds}
-                        maxZoom={6}
-                        minZoom={2}
-                        zoomSnap={0}
-                        center={[30, 0]}
-                        attributionControl={false}
-                        style={{
-                            height: "500px",
-                            backgroundColor: 'transparent',
-                            borderRadius: '7px'
-                        }}
-                    >
-                        <GeoJSON
-                            style={mapStyle}
-                            data={data && data}
-                            onEachFeature={OnEachCountry(searchController)}
-                        />
-                    </MapContainer>
-                </Box>
+                <Fade in={true}>
+                    <Box
+                        rounded='md'
+                        bg={bgHover}
+                        pos='relative'>
+                        <MapContainer
+                            zoom={2}
+                            maxBounds={defaultBounds}
+                            maxZoom={6}
+                            minZoom={2}
+                            zoomSnap={0}
+                            center={[30, 0]}
+                            attributionControl={false}
+                            style={{
+                                height: "500px",
+                                backgroundColor: 'transparent',
+                                borderRadius: '7px'
+                            }}
+                        >
+                            <GeoJSON
+                                style={mapStyle}
+                                data={data && data}
+                                onEachFeature={OnEachCountry(searchController)}
+                            />
+                        </MapContainer>
+                    </Box>
+                </Fade>
             </Skeleton>
         </Box>
     );

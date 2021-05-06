@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton, Select } from '@chakra-ui/react';
+import { Box, Flex, Spacer, useColorModeValue, Heading, Skeleton, Select, Fade } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 const CountryTable = ({ data, searchController, searchTerm }) => {
@@ -51,32 +51,34 @@ const CountryTable = ({ data, searchController, searchTerm }) => {
                         }).map((val, key) => {
                             return (
                                 <div key={key}>
-                                    <Flex
-                                        bg={searchTerm === val.iso3 ? bgHover : bg}
-                                        title={'Click to view ' + val.country + ' summary'}
-                                        onClick={e => {
-                                            e.target.value = val.iso3;
-                                            searchController(e, val.country);
-                                        }}
-                                        cursor="pointer"
-                                        flexDirection="row"
-                                        alignItems="center"
-                                        p={2}
-                                        _hover={{
-                                            bg: bgHover
-                                        }}
-                                    >
-                                        <Heading mr={1} size="xs" minW="28px" fontWeight={500}>{key + 1}.</Heading>
-                                        <img
-                                            style={{ borderRadius: "3px" }}
-                                            src={val.flag}
-                                            alt={val.country}
-                                            height="20px" width="34px" />
-                                        <Heading mx={3} size="xs" fontWeight={500}>{val.country}</Heading>
-                                        <Spacer />
-                                        <Heading size="xs" mx={1}>{val[DataType].toLocaleString()}</Heading>
-                                    </Flex>
-                                    <hr />
+                                    <Fade in={true}>
+                                        <Flex
+                                            bg={searchTerm === val.iso3 ? bgHover : bg}
+                                            title={'Click to view ' + val.country + ' summary'}
+                                            onClick={e => {
+                                                e.target.value = val.iso3;
+                                                searchController(e, val.country);
+                                            }}
+                                            cursor="pointer"
+                                            flexDirection="row"
+                                            alignItems="center"
+                                            p={2}
+                                            _hover={{
+                                                bg: bgHover
+                                            }}
+                                        >
+                                            <Heading mr={1} size="xs" minW="28px" fontWeight={500}>{key + 1}.</Heading>
+                                            <img
+                                                style={{ borderRadius: "3px" }}
+                                                src={val.flag}
+                                                alt={val.country}
+                                                height="20px" width="34px" />
+                                            <Heading mx={3} size="xs" fontWeight={500}>{val.country}</Heading>
+                                            <Spacer />
+                                            <Heading size="xs" mx={1}>{val[DataType].toLocaleString()}</Heading>
+                                        </Flex>
+                                        <hr />
+                                    </Fade>
                                 </div>
                             );
                         })}
