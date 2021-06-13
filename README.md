@@ -1,15 +1,20 @@
-![Covid Tracker Logo](https://i.imgur.com/NLAxbzE.png)
-
-# COVID 19 | Coronavirus Tracker
+<div align='center'>
+<img src='https://i.imgur.com/NLAxbzE.png' alt='Covid Tracker Logo'>
+</div>
+<h1 align='center'>COVID 19 | Coronavirus Tracker</h1>
 
 COVID 19 | Coronavirus Tracker is an app designed and developed to keep track of the latest trend development of SARS COVID-19, featuring various data and statistics such as confirmed, active, recovered, new and death cases, represented in form of charts and a choropleth map.
 
 Cases data is being taken from trusted sources of [Worldometers](https://www.worldometers.info/coronavirus/) and [JHUCSSE](https://github.com/CSSEGISandData/COVID-19) with the help of [Open Disease Data API](https://disease.sh/) and design inspiration taken from [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
 
-## [Live View](https://covid-corona-tracker.netlify.app/)
+<h2 align='center'><a href='https://covid-corona-tracker.netlify.app/' target='_blank'>Live View</a></h2>
+<p  align="center">
+<a  href="https://app.netlify.com/sites/stepanpavlov/deploys"  target="_blank">
+<img  src="https://api.netlify.com/api/v1/badges/348d1cb1-ef02-4d2a-b9d7-60bf5c300661/deploy-status"  alt="Netlify Status"  />
+</a>
+</p>
 
-![Screenshot of the app](https://i.imgur.com/n6lfemF.png)
-
+![Demo](https://i.imgur.com/n6lfemF.png)
 ## Key Features
 
 ### Search-Enabled
@@ -28,7 +33,7 @@ Interactive choropleth map displays popup with details for each country.
 
 Users can hover on any of the charts to see details of date and number of cases
 
-![Chart interaction](https://i.giphy.com/media/Ig2anMrXFK1T6tkDhK/giphy.webp)
+![Chart interaction](https://media.giphy.com/media/mwqeHA92G17EdXiS42/giphy.gif)
 
 ### Flexible data controls
 
@@ -64,3 +69,39 @@ For chart data representation, the app uses [Chart.js](https://www.chartjs.org/)
 Map component is build with the use of [React-Leaflet](https://react-leaflet.js.org/) library, with country polygons being drawn from Datahub.io [World GeoJSON](https://datahub.io/core/geo-countries).
 
 As for the data, the app makes an async/await .GET request to the [Open Disease Data API](https://disease.sh/) using [Axios](https://github.com/axios/axios) processing the data to the needed format and distributing it to all the components as requested.
+
+## 🛠 Installation & Set Up
+
+1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
+
+2. Install dependencies
+
+```sh
+
+npm install
+
+```
+3. Start the development server
+```sh
+
+npm start
+
+```
+
+## 🚀 Building and Running for Production
+
+1. Generate a full static production build  
+
+```sh
+
+npm run build
+
+```
+
+1. Preview the site as it will appear once deployed
+
+```sh
+
+npm run serve
+
+```
