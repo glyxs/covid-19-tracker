@@ -1,8 +1,5 @@
-import { IoPersonCircleSharp } from 'react-icons/io5';
 import ColorModeToggle from './ColorModeToggle/index';
 import SmallScreenMenu from './SmallScreenMenu';
-import IconLinkButton from './IconLinkButton';
-import { AiFillGithub } from 'react-icons/ai';
 import { Flex, Box } from '@chakra-ui/react';
 import SearchBar from './SearchBar';
 import React from 'react';

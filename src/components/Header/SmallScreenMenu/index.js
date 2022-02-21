@@ -1,4 +1,4 @@
-import { Box, Link, Menu, MenuButton, MenuList, MenuItem, IconButton, useColorModeValue } from "@chakra-ui/react";
+import { Box, Menu, MenuButton, MenuList, MenuItem, IconButton, useColorModeValue } from "@chakra-ui/react";
 import ColorModeToggle from './../ColorModeToggle/index';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import React from 'react';
