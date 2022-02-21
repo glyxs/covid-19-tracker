@@ -33,10 +33,7 @@ const Footer = ({ errorHandler }) => {
           </Link>
         </Text>
         <Text flexGrow={1} mx={6} my={3} textAlign="center">
-          Designed and developed by{" "}
-          <Link isExternal={true} href="https://stepanpavlov.com">
-            Stepan Pavlov
-          </Link>
+          Designed and developed by Stepan Pavlov
         </Text>
         <Box flexGrow={{ base: 1, md: 0 }} mx={6} my={3} textAlign="center">
           <Button onClick={onOpen} variant="link" color={color}>

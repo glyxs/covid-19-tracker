@@ -24,17 +24,6 @@ const Header = ({ searchData, searchController }) => {
             <Box ml="4" display={{ base: 'none', sm: 'block' }}>
                 <ColorModeToggle />
             </Box>
-            <Box ml="4" display={{ base: 'none', lg: 'block' }}>
-                <IconLinkButton
-                    href={"https://github.com/pvlvstepan/covid-19-tracker"}
-                    icon={<AiFillGithub fontSize="24px" />} />
-            </Box>
-            <Box ml="4" display={{ base: 'none', lg: 'block' }}>
-                <IconLinkButton
-                    text={<strong>Developer</strong>}
-                    href={"https://stepanpavlov.com"}
-                    icon={<IoPersonCircleSharp fontSize="24px" />} />
-            </Box>
             <Box ml="4" display={{ base: 'block', lg: 'none' }}>
                 <SmallScreenMenu />
             </Box>

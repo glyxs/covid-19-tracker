@@ -27,8 +27,6 @@ const SmallScreenMenu = () => {
             />
             <MenuList zIndex="dropdown" boxShadow="2xl" border="none">
                 <Box p={3} display={{ base: 'block', md: 'none' }} ><Logo /></Box>
-                <MenuItem as={Link} href='https://stepanpavlov.com' isExternal={true}>About Developer</MenuItem>
-                <MenuItem as={Link} href="https://github.com/pvlvstepan/covid-19-tracker" isExternal={true}>GitHub repository</MenuItem>
                 <MenuItem closeOnSelect={false} display={{ base: 'block', sm: 'none' }}><ColorModeToggle /></MenuItem>
             </MenuList>
         </Menu>
