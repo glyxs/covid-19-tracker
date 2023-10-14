@@ -1,7 +1,20 @@
 import React from "react";
-import { Heading, Select, ButtonGroup, Button, Flex, Spacer, useColorModeValue, } from "@chakra-ui/react";
+import {
+  Heading,
+  Select,
+  ButtonGroup,
+  Button,
+  Flex,
+  Spacer,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
-const TimelineControls = ({ periodSelector, caseTypeSelector, sortController, sort }) => {
+const TimelineControls = ({
+  periodSelector,
+  caseTypeSelector,
+  sortController,
+  sort,
+}) => {
   const bgHover = useColorModeValue("bg.boxBgHoverLight", "bg.boxBgHoverDark");
 
   return (

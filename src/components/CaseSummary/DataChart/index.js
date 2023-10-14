@@ -7,12 +7,18 @@ const DataChart = ({ data, isLoading }) => {
   const bg = useColorModeValue("bg.boxBgLight", "bg.boxBgDark");
   const gradientStartColor = useColorModeValue(
     "rgba(255, 255, 255, 0)",
-    "rgba(51, 51, 51, 0)"
+    "rgba(51, 51, 51, 0)",
   );
   const gradient = "linear(to-t, " + bg + ", " + gradientStartColor + ")";
 
   return (
-    <Skeleton pos="relative" zIndex="5" isLoaded={!isLoading && data} bg="transparent" height="80px">
+    <Skeleton
+      pos="relative"
+      zIndex="5"
+      isLoaded={!isLoading && data}
+      bg="transparent"
+      height="80px"
+    >
       <Box
         pos="absolute"
         zIndex="6"
@@ -23,10 +29,7 @@ const DataChart = ({ data, isLoading }) => {
         pointerEvents="none"
         bgGradient={gradient}
       />
-      <Line
-        data={data && data}
-        options={options}
-      />
+      <Line data={data && data} options={options} />
     </Skeleton>
   );
 };

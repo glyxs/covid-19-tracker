@@ -26,11 +26,17 @@ function App() {
       if (!toast.isActive(id)) {
         toast({
           id: id,
-          title: currentError.request ? "Request error occured" : currentError.response ? "Response error occured" : "Error",
-          description: currentError.message ? currentError.message : "Unknown error",
+          title: currentError.request
+            ? "Request error occured"
+            : currentError.response
+            ? "Response error occured"
+            : "Error",
+          description: currentError.message
+            ? currentError.message
+            : "Unknown error",
           status: "error",
           duration: 10000,
-          isClosable: true
+          isClosable: true,
         });
       }
     }
@@ -39,8 +45,12 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [countryName, setCountryName] = useState("");
 
-  const { caseStatsData, caseChartData, caseDataRates } = useCaseSummaryData(searchTerm, errorHandler);
-  const { countrySearchData, countryTableData, worldMapData } = useCountryCasesData(errorHandler);
+  const { caseStatsData, caseChartData, caseDataRates } = useCaseSummaryData(
+    searchTerm,
+    errorHandler,
+  );
+  const { countrySearchData, countryTableData, worldMapData } =
+    useCountryCasesData(errorHandler);
 
   const searchController = (e, country) => {
     if (e.target.value !== "-99" && e.target.value !== searchTerm) {
@@ -53,41 +63,37 @@ function App() {
     <Container maxW="7xl" overflowX="hidden">
       <Header
         searchData={countrySearchData}
-        searchController={searchController} />
-      <Breadcrumbs
-        country={countryName}
-        searchController={searchController} />
+        searchController={searchController}
+      />
+      <Breadcrumbs country={countryName} searchController={searchController} />
       <Flex direction="row">
         <Box flex={{ base: 1, md: 3 }}>
           <CaseSummary
             data={caseStatsData}
             chartData={caseChartData}
-            searchTerm={searchTerm} />
+            searchTerm={searchTerm}
+          />
           <Box mt={6} display={{ base: "block", lg: "none" }}>
-            <CaseDataRates
-              data={caseDataRates}
-              searchTerm={searchTerm} />
+            <CaseDataRates data={caseDataRates} searchTerm={searchTerm} />
           </Box>
           <Box mt={6} display={{ base: "block", lg: "none" }}>
             <CountryTable
               data={countryTableData}
               searchTerm={searchTerm}
-              searchController={searchController} />
+              searchController={searchController}
+            />
           </Box>
           <WorldMap data={worldMapData} searchController={searchController} />
-          <CaseTimeline
-            errorHandler={errorHandler}
-            searchTerm={searchTerm} />
+          <CaseTimeline errorHandler={errorHandler} searchTerm={searchTerm} />
         </Box>
         <Box flex={1} display={{ base: "none", lg: "block" }}>
           <Flex direction="column" h="100%" ml={6}>
-            <CaseDataRates
-              data={caseDataRates}
-              searchTerm={searchTerm} />
+            <CaseDataRates data={caseDataRates} searchTerm={searchTerm} />
             <CountryTable
               data={countryTableData}
               searchTerm={searchTerm}
-              searchController={searchController} />
+              searchController={searchController}
+            />
           </Flex>
         </Box>
       </Flex>

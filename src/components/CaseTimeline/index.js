@@ -23,7 +23,12 @@ const CaseTimeline = ({ errorHandler, searchTerm }) => {
     setCaseType(e.target.value);
   };
 
-  const caseTimeLineData = useCaseTimelineData(searchTerm, period, sort, errorHandler);
+  const caseTimeLineData = useCaseTimelineData(
+    searchTerm,
+    period,
+    sort,
+    errorHandler,
+  );
   const [timelineIsLoading, setTimelineIsLoading] = useState(true);
 
   useEffect(() => {
@@ -46,7 +51,10 @@ const CaseTimeline = ({ errorHandler, searchTerm }) => {
         caseTypeSelector={caseTypeSelector}
         sortController={sortController}
       />
-      <DataChart data={caseTimeLineData && caseTimeLineData[caseType]} isLoading={timelineIsLoading} />
+      <DataChart
+        data={caseTimeLineData && caseTimeLineData[caseType]}
+        isLoading={timelineIsLoading}
+      />
     </Box>
   );
 };

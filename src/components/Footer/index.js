@@ -1,10 +1,21 @@
-import { Flex, Text, Link, Button, useDisclosure, useColorModeValue, Box, } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Link,
+  Button,
+  useDisclosure,
+  useColorModeValue,
+  Box,
+} from "@chakra-ui/react";
 import React from "react";
 import PopupForm from "./PopupForm";
 
 const Footer = ({ errorHandler }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const color = useColorModeValue("color.secondaryLight", "color.secondaryDark");
+  const color = useColorModeValue(
+    "color.secondaryLight",
+    "color.secondaryDark",
+  );
 
   return (
     <>
@@ -41,7 +52,11 @@ const Footer = ({ errorHandler }) => {
           </Button>
         </Box>
       </Flex>
-      <PopupForm onClose={onClose} isOpen={isOpen} errorHandler={errorHandler} />
+      <PopupForm
+        onClose={onClose}
+        isOpen={isOpen}
+        errorHandler={errorHandler}
+      />
     </>
   );
 };
