@@ -1,107 +1,55 @@
-<div align='center'>
-<img src='https://i.imgur.com/NLAxbzE.png' alt='Covid Tracker Logo'>
-</div>
-<h1 align='center'>COVID 19 | Coronavirus Tracker</h1>
+# COVID-19 Tracker
 
-COVID 19 | Coronavirus Tracker is an app designed and developed to keep track of the latest trend development of SARS COVID-19, featuring various data and statistics such as confirmed, active, recovered, new and death cases, represented in form of charts and a choropleth map.
+[![pages-build-deployment](https://github.com/pvlvstepan/covid-19-tracker/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/covid-19-tracker/movie-lister/actions/workflows/pages/pages-build-deployment)
 
-Cases data is being taken from trusted sources of [Worldometers](https://www.worldometers.info/coronavirus/) and [JHUCSSE](https://github.com/CSSEGISandData/COVID-19) with the help of [Open Disease Data API](https://disease.sh/) and design inspiration taken from [Johns Hopkins University COVID-19 Dashboard](https://coronavirus.jhu.edu/map.html).
+COVID-19 Tracker: a web application that provides real-time information on the COVID-19 pandemic. It offers data on the number of confirmed cases, recoveries, and fatalities, along with detailed statistics for different countries and regions.
 
-<h2 align='center'><a href='https://covid-corona-tracker.netlify.app/' target='_blank'>Live View</a></h2>
-<p  align="center">
-<a  href="https://app.netlify.com/sites/stepanpavlov/deploys"  target="_blank">
-<img  src="https://api.netlify.com/api/v1/badges/348d1cb1-ef02-4d2a-b9d7-60bf5c300661/deploy-status"  alt="Netlify Status"  />
-</a>
-</p>
+Features
 
-![Demo](https://i.imgur.com/n6lfemF.png)
-## Key Features
+- View global statistics for COVID-19, including total cases, recoveries, and deaths.
+- Search for country-specific data.
+- Interactive map to visualize the spread of the virus.
+- Historical data and trend charts.
 
-### Search-Enabled
+## Installation
 
-Users can easily search for specific country using search bar and other components
+To run COVID-19 Tracker locally, follow these steps:
 
-![Search functionality](https://media2.giphy.com/media/1Fif5zk6TeQrVnTd4G/giphy.gif?cid=790b76116614d735e861a5b519387e5d99314354bc1fee3e&rid=giphy.gif&ct=g)
+1. Clone the repository:
 
-### Interactive World Map
+   ```bash
+   git clone https://github.com/pvlvstepan/covid-19-tracker.git
+   cd covid-19-tracker
+   ```
 
-Interactive choropleth map displays popup with details for each country.
+2. Install dependencies (Node.js v12 or higher, but not higher than v16 is required):
 
-![Map interaction](https://media3.giphy.com/media/BPFrOdPl3OOdollQtE/giphy.gif?cid=790b7611c1256baeb9378c20b4b35b5fe2356fcd1128afa8&rid=giphy.gif&ct=g)
+   ```bash
+   npm install
+   ```
 
-### Interactive Charts
+3. Start the development server:
 
-Users can hover on any of the charts to see details of date and number of cases
+   ```bash
+   npm start
+   ```
 
-![Chart interaction](https://media.giphy.com/media/mwqeHA92G17EdXiS42/giphy.gif)
+4. Open your web browser and navigate to `http://localhost:3000` to access the application.
 
-### Flexible data controls
 
-Data displayed in charts and tables can be sorted by multiple parameters: by case type, weekly or daily, and by period of time.
+## Technologies Used
 
-![Datachart controls](https://media4.giphy.com/media/EODcwOHVLwXo1gnsN5/giphy.gif?cid=790b7611da2d37e9679af1e170662729ee320a9d959275a6&rid=giphy.gif&ct=g)
-![Datatable controls](https://media1.giphy.com/media/JkhHxcorp3FAqY55xm/giphy.gif?cid=790b7611f330bebf9a84aca182f101eda309bc0087cdb59b&rid=giphy.gif&ct=g)
+- [React](https://react.dev/)
+- [Axios](https://github.com/axios/axios)
+- [Leaflet](https://leafletjs.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [chakra-ui](https://chakra-ui.com/)
+- [disease.sh API](https://disease.sh)
 
-### Dark Mode Enabled
+## License
 
-App will automatically set color scheme to the user's system preferred mode, but they can always toggle it using the Dark Mode switch
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-![Dark Mode toggle](https://media2.giphy.com/media/rLuOYBH8fuI5ynODZR/giphy.gif?cid=790b7611727c6402e9335103df7c508acb18da2d6700c405&rid=giphy.gif&ct=g)
+## Acknowledgments
 
-### Responsive Design
-
-Pixel-perfected for all screen sizes and resolutions.
-
-![Device mockup](https://i.ibb.co/FnWvqPW/Screenshot-2021-04-28-115957.png)
-
-### Bug Reporting
-
-Users are able to submit a bug report form to the Netlify dashboard.
-
-![Bug Reporting](https://media1.giphy.com/media/AZVYnAjlNG7pC4RE8m/giphy.gif?cid=790b7611e111240b1586ee3affae4329d7299a141732b700&rid=giphy.gif&ct=g)
-
-## How it works
-
-The app is powered by [React](https://reactjs.org/) library with node.js at its core. it is initialized with create-react-app and it uses [Chakra UI](https://github.com/chakra-ui/chakra-ui) components throughout the whole UI.
-
-For chart data representation, the app uses [Chart.js](https://www.chartjs.org/) library with [react-chartjs-2](https://github.com/reactchartjs/react-chartjs-2) wrapper for React.
-
-Map component is build with the use of [React-Leaflet](https://react-leaflet.js.org/) library, with country polygons being drawn from Datahub.io [World GeoJSON](https://datahub.io/core/geo-countries).
-
-As for the data, the app makes an async/await .GET request to the [Open Disease Data API](https://disease.sh/) using [Axios](https://github.com/axios/axios) processing the data to the needed format and distributing it to all the components as requested.
-
-## 🛠 Installation & Set Up
-
-1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
-
-2. Install dependencies
-
-```sh
-
-npm install
-
-```
-3. Start the development server
-```sh
-
-npm start
-
-```
-
-## 🚀 Building and Running for Production
-
-1. Generate a full static production build  
-
-```sh
-
-npm run build
-
-```
-
-1. Preview the site as it will appear once deployed
-
-```sh
-
-npm run serve
-
-```
+- Special thanks to the creators of the [disease.sh](https://disease.sh) API
