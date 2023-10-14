@@ -1,5 +1,7 @@
 # COVID-19 Tracker
 
+![cover](public/cover.png)
+
 [![pages-build-deployment](https://github.com/pvlvstepan/covid-19-tracker/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/covid-19-tracker/movie-lister/actions/workflows/pages/pages-build-deployment)
 
 COVID-19 Tracker: a web application that provides real-time information on the COVID-19 pandemic. It offers data on the number of confirmed cases, recoveries, and fatalities, along with detailed statistics for different countries and regions.
