@@ -14,7 +14,7 @@ const useCaseSummaryData = (searchTerm, errorHandler) => {
   const searchScope = searchTerm === "" ? "all" : searchTerm;
 
   const APIstring =
-    "/api/v3/covid-19/historical/" + searchScope + "?lastdays=31";
+    "https://disease.sh/v3/covid-19/historical/" + searchScope + "?lastdays=31";
 
   const { response, requestError } = useAPIrequest(APIstring);
 

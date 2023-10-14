@@ -17,7 +17,7 @@ const useCaseTimelineData = (searchTerm, period, sort, errorHandler) => {
   const searchScope = searchTerm === "" ? "all" : searchTerm;
 
   const APIstring =
-    "/api/v3/covid-19/historical/" +
+    "https://disease.sh/v3/covid-19/historical/" +
     searchScope +
     "?lastdays=" +
     daysBetween(d1, new Date());

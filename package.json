@@ -1,5 +1,6 @@
 {
   "name": "covid-19-tracker",
+  "homepage": "https://covid19.stepanpavlov.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

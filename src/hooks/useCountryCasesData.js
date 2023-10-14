@@ -9,7 +9,7 @@ const useCountryCasesData = (errorHandler) => {
   const [countryTableData, setCountryTableData] = useState(null);
   const [worldMapData, setWorldMapData] = useState(null);
 
-  const APIstring = "/api/v3/covid-19/countries";
+  const APIstring = "https://disease.sh/v3/covid-19/countries";
 
   const { response, requestError } = useAPIrequest(APIstring);
 
